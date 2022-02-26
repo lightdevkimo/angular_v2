@@ -1,0 +1,99 @@
+<div class="site-wrap">
+  <div class="site-mobile-menu">
+    <div class="site-mobile-menu-header">
+      <div class="site-mobile-menu-close mt-3">
+        <span class="icon-close2 js-menu-toggle"></span>
+      </div>
+    </div>
+    <div class="site-mobile-menu-body"></div>
+  </div>
+
+  <header class="bg-dark absolute site-navbar" role="banner">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-11 col-xl-2">
+          <h1 class="mb-0 site-logo">
+            <a routerLink="/home" class="text-white h2 mb-0">SAKN </a>
+          </h1>
+        </div>
+        <div class="col-12 col-md-10 d-none d-xl-block">
+          <nav
+            class="site-navigation position-relative text-right"
+            role="navigation"
+          >
+            <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
+              <li [ngClass]="{'active':current=='home'}" 
+              (click)='changeActive("home")'>
+                <a routerLink="/home"><span>Home</span></a>
+              </li>
+              <!-- <li class="has-children">
+                <a><span>Dropdown</span></a>
+                <ul class="dropdown arrow-top">
+                  <li><a href="#">Menu One</a></li>
+                  <li><a href="#">Menu Two</a></li>
+                  <li><a href="#">Menu Three</a></li>
+                  <li class="has-children">
+                    <a href="#">Dropdown</a>
+                    <ul class="dropdown">
+                      <li><a href="#">Menu One</a></li>
+                      <li><a href="#">Menu Two</a></li>
+                      <li><a href="#">Menu Three</a></li>
+                      <li><a href="#">Menu Four</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li> -->
+              <li [ngClass]="{'active':current=='find'}" 
+              (click)='changeActive("find")'>
+                <a routerLink="/find"><span>Find</span></a>
+              </li>
+              <li [ngClass]="{'active':current=='about'}" 
+              (click)='changeActive("about")'>
+                <a routerLink="about"><span>About</span></a>
+              </li>
+              <li  [ngClass]="{'active':current=='/apartment/add'}" 
+              (click)='changeActive("/apartment/add")'>
+                <a routerLink="/apartment/add"><span>Add Appartment</span></a>
+              </li>
+              <li  [ngClass]="{'active':current=='contact'}" 
+              (click)='changeActive("contact")'> 
+                <a routerLink="contact"><span>Contact</span></a>
+              </li>
+              <li  [ngClass]="{'active':current=='login'}" 
+              (click)='changeActive("login")'
+               *ngIf="!isLogin">
+                <a  routerLink="/login"><span>Log In / Sign Up</span></a>
+              </li>
+              
+              
+              <li *ngIf="isLogin" class="has-children">
+                <a routerLink="/profile" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img src="../../../assets/images/PersonalImage.png" alt="mdo" width="32" height="32" class="rounded-circle mr-3">
+                </a>
+                <ul class="dropdown arrow-top">
+                    <li><a  class="dropdown-item" routerLink="/profile">Profile</a></li>
+                    <li><a *ngIf="role===2" class="dropdown-item" routerLink="/users">All users</a></li>
+                    <li><a *ngIf="role>=1" class="dropdown-item" routerLink="/apartment/add">Add Appartment</a></li>
+                    <li><a *ngIf="role>=1" class="dropdown-item" routerLink="/apartment/edit">Edit Appartment</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" (click)="destorySession()" >Sign out</a></li>
+                </ul>
+              </li>
+              
+            </ul>
+            
+          </nav>
+        </div>
+
+        <div
+          class="d-inline-block d-xl-none ml-md-0 mr-auto py-3"
+          style="position: relative; top: 3px"
+        >
+          <a href="#" class="site-menu-toggle js-menu-toggle text-white"
+            ><span class="icon-menu h3"></span
+          ></a>
+        </div>
+      </div>
+    </div>
+  </header>
+</div>
