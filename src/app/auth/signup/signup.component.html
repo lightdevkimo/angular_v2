@@ -29,7 +29,7 @@
           <div class="row form-group">
             <div class="col-md-6 mb-3 mb-md-0">
               <label class="text-black" for="fname">First Name</label>
-              <input type="text" id="fname" class="form-control" 
+              <input type="text" id="fname" class="form-control border border-dark" 
               ngModel name="fname" 
               required pattern="^[a-zA-Z_][a-zA-Z0-9_]*$"
               minlength="3"
@@ -50,7 +50,7 @@
             </div>
             <div class="col-md-6">
               <label class="text-black" for="lname">Last Name</label>
-              <input type="text" id="lname" class="form-control" 
+              <input type="text" id="lname" class="form-control border border-dark" 
               ngModel name="lname" 
               required pattern="^[a-zA-Z_][a-zA-Z0-9_]*$" 
               minlength="3"
@@ -75,7 +75,7 @@
           <div class="row form-group">
             <div class="col-md-12">
               <label class="text-black" for="email">Email</label>
-              <input type="email" id="email" class="form-control" 
+              <input type="email" id="email" class="form-control border border-dark" 
               ngModel name="email" 
               required email 
               #email=ngModel
@@ -97,7 +97,7 @@
           <div class="row form-group">
             <div class="col-md-12">
               <label class="text-black " for="pass1">Password</label>
-              <input type="password" id="pass1" class="form-control" 
+              <input type="password" id="pass1" class="form-control border border-dark" 
               ngModel name="pass1" required minlength="8"
               #pass1='ngModel' 
               [ngClass]="{'alert-danger' : pass1.invalid && pass1.touched}"
@@ -117,7 +117,7 @@
           <div class="row form-group ">
             <div class="col-md-12">
               <label class="text-black " for="pass2">Re-type Password</label>
-              <input type="password" id="pass2" class="form-control "  
+              <input type="password" id="pass2" class="form-control border border-dark"  
               [ngClass]="{'alert-danger' : pass2.invalid && pass2.touched}"
               ngModel name="pass2" required #pass2='ngModel' 
               [pattern]="pass1.value"
@@ -139,7 +139,7 @@
               <input
                 type="submit"
                 value="Sign Up"
-                class="btn btn-primary btn-lg text-white"
+                class="btn btn-dark btn-lg text-white"
                 [disabled]="!signupForm.valid"
                 />
               </div>
