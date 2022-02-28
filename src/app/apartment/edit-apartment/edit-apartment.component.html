@@ -8,16 +8,46 @@
     </div>
   </ng-container>
 </app-overlay>
-<div class="site-section bg-white" style="position: relative; margin-top: -30vh">
-  <div class="page-wrapper">
-    <div class="content container">
+<div class="site-section bg-light" >
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 mb-5"  data-aos="fade">
+        <!-- <form action="#" class="p-5 bg-white" style="margin-top: -30vh;"> -->
+    <!-- <div class="content container">
       <div class="row d-flex justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-10"> -->
           <!-- form -->
-          <form #addApartmentForm="ngForm" (ngSubmit)="addApartment(addApartmentForm)">
+          <form #addApartmentForm="ngForm" (ngSubmit)="addApartment(addApartmentForm)" class="p-5 bg-white" style="margin-top: -30vh;">
             <div class="row formtype">  
+               <!-- price -->
+               <div class="col-md-12">
+                <div class="form-group">
+                  <label>Price</label>
+                  <label class="text-muted" for="">&nbsp;(LE)</label>
+                  <input required class="form-control border border-dark" type="number" min="0" value="" pattern="^-?\d*\.?\d+$"
+                    name="price" ngModel #price="ngModel" [ngClass]="{
+                        'alert-danger':
+                          price.invalid &&
+                          (price.touched || addApartmentForm.submitted)
+                      }" />
+                </div>
+                <div>
+                  <div class="text-danger small" *ngIf="
+                        price.invalid &&
+                        (price.touched || addApartmentForm.submitted)
+                      ">
+                    - Price is required.
+                  </div>
+                  <div class="text-danger small" *ngIf="price.errors?.min && price.touched">
+                    - Price must positive number.
+                  </div>
+                  <div class="text-danger small" *ngIf="price.errors?.pattern && price.touched">
+                    - Price must be number.
+                  </div>
+                </div>
+              </div>
               <!-- accompany -->
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <div class="form-group">
                   <label>Available Rooms</label>
                   <input required class="form-control border border-dark" type="number" min="1" value="" pattern="^-?\d*\.?\d+$"
@@ -43,7 +73,7 @@
                 </div>
               </div>
               <!--Max-->
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <div class="form-group">
                   <label>Maximum seats</label>
                   <input required class="form-control border border-dark" type="number" min="1" value="" pattern="^-?\d*\.?\d+$"
@@ -70,7 +100,7 @@
               </div>
     
               <!-- address -->
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <div class="form-group">
                   <label>Address</label>
                   <input required type="text" class="form-control border border-dark" id="address" name="address" ngModel
@@ -90,43 +120,16 @@
                 </div>
               </div>
               <!-- nearby -->
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <div class="form-group">
                   <label>Nearby</label>
                   <input type="text" class="form-control border border-dark" id="nearby" name="nearby" ngModel #nearby="ngModel" />
                 </div>
               </div>
 
-              <!-- price -->
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Price</label>
-                  <label class="text-muted" for="">&nbsp;(LE)</label>
-                  <input required class="form-control border border-dark" type="number" min="0" value="" pattern="^-?\d*\.?\d+$"
-                    name="price" ngModel #price="ngModel" [ngClass]="{
-                        'alert-danger':
-                          price.invalid &&
-                          (price.touched || addApartmentForm.submitted)
-                      }" />
-                </div>
-                <div>
-                  <div class="text-danger small" *ngIf="
-                        price.invalid &&
-                        (price.touched || addApartmentForm.submitted)
-                      ">
-                    - Price is required.
-                  </div>
-                  <div class="text-danger small" *ngIf="price.errors?.min && price.touched">
-                    - Price must positive number.
-                  </div>
-                  <div class="text-danger small" *ngIf="price.errors?.pattern && price.touched">
-                    - Price must be number.
-                  </div>
-                </div>
-              </div>
-        
+             
           <!-- gender -->
-              <div class="col-md-7">
+              <div class="col-md-12">
                 <div class="form-group">
                   <label>Gender</label>
                   <div [ngClass]="{
@@ -154,7 +157,7 @@
 
             <div class="row">
                <!-- description -->
-               <div class="col-md-6">
+               <div class="col-md-12">
                 <div class="form-group">
                   <label>Description</label>
                   <textarea required class="form-control border border-dark" rows="10" id="comment" name="description"
@@ -176,7 +179,7 @@
               </div>
               <!-- images -->
               <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <div class="form-group">
                   <div class="custom-file mb-3">
                     <label for="formFileMultiple" class="form-label">Images</label>
@@ -200,7 +203,7 @@
             </div>
             <!-- slide -->
             <div class="row">
-              <section class="col-md-6">
+              <section class="col-md-12">
                 <div class="container">
                   <div class="carousel">
                     <input *ngFor="let item of imagesUrl " type="radio" name="slides" [id]="'slide-'+i">
@@ -232,7 +235,7 @@
              
             </div>
             <div class="row d-flex justify-content-start pt-5">
-              <div class="col-md-3 d-flex flex-column justify-content-around">
+              <div class="col-md-12 d-flex flex-column justify-content-around">
                 <div class="row d-flex justify-content-around">
                   <button type="submit" class="btn btn-dark buttonedit ml-2" [disabled]="!addApartmentForm.valid">
                     Save
@@ -248,4 +251,4 @@
       </div>
     </div>
   </div>
-</div>
+<!-- </div> -->
