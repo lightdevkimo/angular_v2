@@ -14,7 +14,7 @@
       <div class="row d-flex justify-content-center">
         <div class="col-md-10">
           <!-- form -->
-          <form #addApartmentForm="ngForm" (ngSubmit)="addApartment(addApartmentForm)">
+          <form #addApartmentForm="ngForm" (ngSubmit)="addApartment(addApartmentForm.value)">
             <div class="row formtype">
               <!-- price -->
               <div class="col-md-2">
@@ -43,29 +43,29 @@
                   </div>
                 </div>
               </div>
-              <!-- accompany -->
+              <!-- available -->
               <div class="col-md-3">
                 <div class="form-group">
                   <label>Available</label>
                   <input required class="form-control" type="number" min="1" value="" pattern="^-?\d*\.?\d+$"
-                    name="accompany" ngModel #accompany="ngModel" [ngClass]="{
+                    name="available" ngModel #available="ngModel" [ngClass]="{
                         'alert-danger':
-                          accompany.invalid &&
-                          (accompany.touched || addApartmentForm.submitted)
+                          available.invalid &&
+                          (available.touched || addApartmentForm.submitted)
                       }" />
                 </div>
                 <div>
                   <div class="text-danger small" *ngIf="
-                        accompany.invalid &&
-                        (accompany.touched || addApartmentForm.submitted)
+                        available.invalid &&
+                        (available.touched || addApartmentForm.submitted)
                       ">
-                    - Accompany is required.
+                    - available is required.
                   </div>
-                  <div class="text-danger small" *ngIf="accompany.errors?.min && accompany.touched">
-                    - Accompany must be greater than 0.
+                  <div class="text-danger small" *ngIf="available.errors?.min && available.touched">
+                    - available must be greater than 0.
                   </div>
-                  <div class="text-danger small" *ngIf="accompany.errors?.pattern && accompany.touched">
-                    - Accompany must be number.
+                  <div class="text-danger small" *ngIf="available.errors?.pattern && available.touched">
+                    - available must be number.
                   </div>
                 </div>
               </div>
@@ -156,7 +156,7 @@
                 <div class="form-group">
                   <div class="custom-file mb-3">
                     <label for="formFileMultiple" class="form-label">Images</label>
-                    <input required class="form-control" type="file" name="images" ngModel #images="ngModel"
+                    <input required class="form-control" type="file" name="ii" ngModel #images="ngModel"
                       accept="image/*" id="formFileMultiple" multiple (change)="selectFiles($event)" [ngClass]="{
                           'alert-danger':
                             images.invalid &&
@@ -186,7 +186,7 @@
                       <li *ngFor="let item of imagesUrl " class="carousel__slide">
                         <figure>
                           <div>
-                            <img src="https://picsum.photos/id/1041/800/450" alt="">
+                            <img src="item" alt="">
                           </div>
                           <figcaption>
                             Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -198,7 +198,7 @@
                     </ul>
                     <ul class="carousel__thumbnails">
                       <li *ngFor="let item of imagesUrl">
-                        <label for="slide-1"><img src="https://picsum.photos/id/1041/150/150" alt=""></label>
+                        <label for="slide-1"><img src="item" alt=""></label>
                       </li>
 
                     </ul>

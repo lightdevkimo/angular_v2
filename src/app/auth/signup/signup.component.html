@@ -1,7 +1,7 @@
 <app-overlay>
   <ng-container class="content">
     <h1>Sign Up</h1>
-    
+
   </ng-container>
 </app-overlay>
 
@@ -17,9 +17,9 @@
     <div class="row d-flex justify-content-around" >
       <div class="col-md-6 mb-5"  >
 
-        <form  class="p-5 bg-white " 
+        <form  class="p-5 bg-white "
         #signupForm="ngForm"
-        (ngSubmit)="signup(signupForm)"
+        (ngSubmit)="signup(signupForm.value)"
         *ngIf="!isLoading"
         >
         <div class="alert alert-danger" *ngIf="error">
@@ -28,44 +28,44 @@
         <!-- first name and last name -->
           <div class="row form-group">
             <div class="col-md-6 mb-3 mb-md-0">
-              <label class="text-black" for="fname">First Name</label>
-              <input type="text" id="fname" class="form-control" 
-              ngModel name="fname" 
+              <label class="text-black" for="name">First Name</label>
+              <input type="text" id="name" class="form-control"
+              ngModel name="name"
               required pattern="^[a-zA-Z_][a-zA-Z0-9_]*$"
               minlength="3"
-              #fname=ngModel
-              [ngClass]="{'alert-danger' : fname.invalid && fname.touched}"
+              #name=ngModel
+              [ngClass]="{'alert-danger' : name.invalid && name.touched}"
               />
               <div>
-                <div class="text-danger small" *ngIf="fname.errors?.required && fname.touched">
+                <div class="text-danger small" *ngIf="name.errors?.required && name.touched">
                   - Your First Name is required.
                 </div>
-                <div class="text-danger small" *ngIf=" fname.errors?.pattern && fname.touched">
+                <div class="text-danger small" *ngIf=" name.errors?.pattern && name.touched">
                   - Your First Name must start with letters or underscores only.
                 </div>
-                <div class="text-danger small" *ngIf="fname.errors?.minlength && fname.touched">
+                <div class="text-danger small" *ngIf="name.errors?.minlength && name.touched">
                   - Your First Name must be 3 characters at least.
                 </div>
               </div>
             </div>
             <div class="col-md-6">
-              <label class="text-black" for="lname">Last Name</label>
-              <input type="text" id="lname" class="form-control" 
-              ngModel name="lname" 
-              required pattern="^[a-zA-Z_][a-zA-Z0-9_]*$" 
+              <label class="text-black" for="gender">Gender</label>
+              <input type="text" id="gender" class="form-control"
+              ngModel name="gender"
+              required pattern="^[a-zA-Z_][a-zA-Z0-9_]*$"
               minlength="3"
-              #lname=ngModel
-              [ngClass]="{'alert-danger' : lname.invalid && lname.touched}"
+              #gender=ngModel
+              [ngClass]="{'alert-danger' : gender.invalid && gender.touched}"
               />
               <div>
-                <div class="text-danger small" *ngIf="lname.errors?.required && lname.touched">
-                  - Your Last Name is required.
+                <div class="text-danger small" *ngIf="gender.errors?.required && gender.touched">
+                  - Your Gender is required.
                 </div>
-                <div class="text-danger small" *ngIf=" lname.errors?.pattern && lname.touched">
-                  - Your Last Name must start with letters or underscores only.
+                <div class="text-danger small" *ngIf=" gender.errors?.pattern && gender.touched">
+                  - Your Gender must start with letters or underscores only.
                 </div>
-                <div class="text-danger small" *ngIf="lname.errors?.minlength && lname.touched">
-                  - Your Last Name must be 3 characters at least.
+                <div class="text-danger small" *ngIf="gender.errors?.minlength && gender.touched">
+                  - Your Gender must be 3 characters at least.
                 </div>
               </div>
             </div>
@@ -75,9 +75,9 @@
           <div class="row form-group">
             <div class="col-md-12">
               <label class="text-black" for="email">Email</label>
-              <input type="email" id="email" class="form-control" 
-              ngModel name="email" 
-              required email 
+              <input type="email" id="email" class="form-control"
+              ngModel name="email"
+              required email
               #email=ngModel
               [ngClass]="{'alert-danger' : email.invalid && email.touched}"
               />
@@ -88,7 +88,7 @@
                 <div class="text-danger small" *ngIf=" email.errors?.email && email.touched">
                   - Your Email must be valid.
                 </div>
-                
+
               </div>
             </div>
           </div>
@@ -96,40 +96,40 @@
 
           <div class="row form-group">
             <div class="col-md-12">
-              <label class="text-black " for="pass1">Password</label>
-              <input type="password" id="pass1" class="form-control" 
-              ngModel name="pass1" required minlength="8"
-              #pass1='ngModel' 
-              [ngClass]="{'alert-danger' : pass1.invalid && pass1.touched}"
+              <label class="text-black " for="password">Password</label>
+              <input type="password" id="password" class="form-control"
+              ngModel name="password" required minlength="8"
+              #password='ngModel'
+              [ngClass]="{'alert-danger' : password.invalid && password.touched}"
               />
               <div>
-                <div class="text-danger small" *ngIf="pass1.errors?.required && pass1.touched">
+                <div class="text-danger small" *ngIf="password.errors?.required && password.touched">
                   - Your Password is required.
                 </div>
-                <div class="text-danger small" *ngIf=" pass1.errors?.minlength && pass1.touched">
+                <div class="text-danger small" *ngIf=" password.errors?.minlength && password.touched">
                   - Your Password must be 8 at least.
                 </div>
-                
+
               </div>
             </div>
           </div>
         <!-- retype password -->
           <div class="row form-group ">
             <div class="col-md-12">
-              <label class="text-black " for="pass2">Re-type Password</label>
-              <input type="password" id="pass2" class="form-control "  
-              [ngClass]="{'alert-danger' : pass2.invalid && pass2.touched}"
-              ngModel name="pass2" required #pass2='ngModel' 
-              [pattern]="pass1.value"
+              <label class="text-black " for="password_confirmation">Re-type Password</label>
+              <input type="password" id="password_confirmation" class="form-control"
+              [ngClass]="{'alert-danger' : password_confirmation.invalid && password_confirmation.touched}"
+              ngModel name="password_confirmation" required #password_confirmation='ngModel'
+              [pattern]="password.value"
               />
               <div>
-                <div class="text-danger small" *ngIf="pass2.errors?.required && pass2.touched">
+                <div class="text-danger small" *ngIf="password_confirmation.errors?.required && password_confirmation.touched">
                   - Your Password is required.
                 </div>
-                <div class="text-danger small" *ngIf=" pass2.errors?.pattern && pass2.touched">
+                <div class="text-danger small" *ngIf=" password_confirmation.errors?.pattern && password_confirmation.touched">
                   - Two Passwords must be exact.
                 </div>
-                
+
               </div>
             </div>
           </div>
@@ -151,8 +151,8 @@
                 class=" link-secondary"
               > Log In</a>
             </div>
-            
-            
+
+
           </div>
         </form>
       </div>

@@ -95,9 +95,9 @@
       <div class="col-md-6 mb-4 mb-lg-4 col-lg-4 " *ngFor="let apart of apart">
 
         <div class="card" style="width:450px" >
-          <img class="card-img-top" src="../../assets/images/apart_3.jpeg" alt="Card image" style="width:100%">
+          <img class="card-img-top" src="{{ url }}4-259923558_1646011022.PNG" alt="Card image" style="width:100%">
           <div class="card-body">
-            <h4 class="card-title">owner : hamada </h4>
+            <h4 class="card-title">owner : hamada  </h4>
             <p class="card-text">Price : {{ apart.price }}</p>
             <p class="card-text">Address : 94 Abdul-Elgoad St,Dirout,Assuit,Egypt </p>
             <p class="card-text ">Max Persons : {{ apart.max }}
@@ -111,7 +111,7 @@
             </p>
             <p class="card-text">Gender : {{ apart.gender }} </p>
 
-            <a routerLink="apart-details" class="btn btn-danger">Show</a>
+            <a (click)="show()" class="btn btn-danger">Show</a>
           </div>
         </div>
 

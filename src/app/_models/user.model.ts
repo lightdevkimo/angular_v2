@@ -48,7 +48,7 @@ export interface cities {
 }
 
 export interface apart{
-  id:number,
+  id?:number,
   description:string,
   approved:boolean,
   address:string,
@@ -64,4 +64,12 @@ export interface apart{
   created_at:string,
   updated_at:string
 
+}
+
+export interface contact {
+  firstname: string,
+  lastname: string,
+  email:string,
+  subject:string,
+  message:string
 }
