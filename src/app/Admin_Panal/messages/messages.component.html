@@ -1,0 +1,93 @@
+<div class="main-wrapper">
+    <app-aside>
+      <ng-container class="content">
+        <ul>
+          <li>
+            <a routerLink="/admin-panal/statics"
+              ><i class="fas fa-tachometer-alt"></i>
+              <span>Statics</span></a
+            >
+          </li>
+          <li class="list-divider"></li>
+        
+          <li class="submenu">
+            <a routerLink="/admin-panal/apartments"
+              ><i class=" fas fa-home "></i> <span> Apartments </span>
+              <span class=" menu-arrow"></span
+            ></a>
+           
+          </li>
+          <li class="list-divider"></li>
+        
+          <li class="submenu ">
+            <a routerLink="/admin-panal/users"
+              ><i class=" fas fa-user "></i> <span> Users </span>
+              <span class=" menu-arrow"></span
+            ></a>
+           
+          </li>
+          <li class="list-divider"></li>
+          <li class="submenu active">
+            <a routerLink="massages"
+              ><i class="fas fa-comment-alt"></i> <span> Messages </span>
+              <span class=" menu-arrow"></span
+            ></a>
+           
+          </li>
+          <li class="list-divider"></li>
+          <li class="submenu ">
+            <a (click)="destorySession()" 
+              ><i class="fas fa-sign-out-alt"></i> <span> Sign out </span>
+              <span class=" menu-arrow"></span
+            ></a>
+           
+          </li>
+          
+          
+          
+
+        </ul>
+    
+      </ng-container>
+    </app-aside>
+    <div class="page-wrapper mt-5">
+      <div class="content container-fluid">
+        <div class="row">
+            <div class="col-md-12 d-flex">
+              <div class="card card-table flex-fill">
+                
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-hover table-center">
+                      <thead>
+                        <tr>
+                          <th class="text-center text-danger">User Name</th>
+                          <th class="text-center text-danger">Subject</th>
+                          <th class="text-center text-danger">Email ID</th>
+                          <th class="text-center text-danger">Message</th>
+                          
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="text-nowrap text-center">
+                            <div>tony</div>
+                          </td>
+                          <td class="text-nowrap text-center">contact error</td>
+                          <td class="text-nowrap text-center">tony@mail.com</td>
+                       <td class="text-wrap text-center">
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit, modi eligendi placeat, ut aliquid quidem eaque a ipsa animi quam sit, blanditiis fugiat id amet vel corporis corrupti odit. Eos.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit, modi eligendi placeat, ut aliquid quidem eaque a ipsa animi quam sit, blanditiis fugiat id amet vel corporis corrupti odit. Eos.
+                          </td>
+                        </tr>
+                 
+                        
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
