@@ -18,6 +18,7 @@ import { UsersComponent } from './Admin_Panal/users/users.component';
 import { ApartmentsComponent } from './Admin_Panal/apartments/apartments.component';
 import { MessagesComponent } from './Admin_Panal/messages/messages.component';
 import { UserGuard } from './_guards/user.guard';
+import { AddCityComponent } from './Admin_Panal/add-city/add-city.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -41,6 +42,12 @@ const routes: Routes = [
       { path: 'statics', component: StaticsComponent },
       { path: 'apartments', component: ApartmentsComponent },
       { path: 'massages', component: MessagesComponent },
+
+      {path: 'add/City', component:AddCityComponent},
+      {path: 'add-apartment', component: AddApartmentComponent},
+      {path: 'edit-apartment', component: EditApartmentComponent},
+      {path: 'all-apartment', component: EditApartmentComponent},
+
       { path: 'users', component: UsersComponent },
       { path: 'users/edit', component: EditUserComponent },
       { path: 'users/profile', component: ProfileComponent },

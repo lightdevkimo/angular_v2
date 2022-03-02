@@ -1,3 +1,4 @@
+import { DataTablesModule } from 'angular-datatables';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -25,6 +26,7 @@ import { AsideComponent } from './Admin_Panal/aside/aside.component';
 import { StaticsComponent } from './Admin_Panal/statics/statics.component';
 import { ApartmentsComponent } from './Admin_Panal/apartments/apartments.component';
 import { MessagesComponent } from './Admin_Panal/messages/messages.component';
+import { AddCityComponent } from './Admin_Panal/add-city/add-city.component';
 
 
 @NgModule({
@@ -51,13 +53,15 @@ import { MessagesComponent } from './Admin_Panal/messages/messages.component';
     StaticsComponent,
     ApartmentsComponent,
     MessagesComponent,
+    AddCityComponent
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    DataTablesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

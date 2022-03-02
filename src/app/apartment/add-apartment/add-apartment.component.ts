@@ -67,8 +67,6 @@ export class AddApartmentComponent implements OnInit {
     db.append('owner_id', JSON.parse(localStorage.getItem('user_info'))['id'])
     db.append('city_id', data['state'])
 
-    //console.log('Bearer '+localStorage.getItem('token'));
-    //{ headers: new HttpHeaders().append('Authorization','')}
     this.http.post('http://127.0.0.1:8000/api/apartements', db,{ headers: new HttpHeaders().append('Authorization','Bearer '+localStorage.getItem('token'))}).subscribe(data => {
       console.log(data);
     }, error => {
