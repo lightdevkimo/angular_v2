@@ -79,3 +79,13 @@ message:string
 export interface img{
 img:File;
 }
+
+export interface user_info{
+
+    id:number,
+    name: string,
+    role:number,
+    email:string,
+    gender:string
+    
+}

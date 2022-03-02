@@ -189,6 +189,53 @@
             </div>
           </div>
 
+          <div class="col-md-6">
+            <label>Choose Governorate</label>
+
+            <div class="wrap-icon">
+              <span class="icon"
+                ><span class="icon-keyboard_arrow_down"></span
+              ></span>
+              <select
+                class="form-control"
+                #governate="ngModel"
+                name="governate"
+                ngModel
+                (change)="choosegov($event)"
+                id=""
+              >
+                <option *ngFor="let city of gov" [value]="city.governorate">
+                  {{ city.governorate }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="text-danger">Choose Areas</label>
+
+            <div class="wrap-icon">
+              <span class="icon"
+                ><span class="icon-keyboard_arrow_down"></span
+              ></span>
+              <select
+                class="form-control"
+                [required]="governate.dirty"
+                ngModel
+                *ngIf="test"
+                name="state"
+                id=""
+              >
+                <option value=""></option>
+                <option *ngFor="let city of cities" [value]="city.id">
+                  {{ city.name }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <br />
+          <br />
           <!-- price -->
           <div class="col-md-12">
             <div class="form-group">
@@ -318,25 +365,24 @@
         <div class="row from-group">
           <div class="col-md-12">
             <label class="text-black">Apartment Images :</label>
+
             <input
-              type="file"
-              id="file"
-              name="ii"
-              required
-              class="form-control"
-              name="images"
-              ngModel
-              accept="image/*"
-              multiple
-              [ngClass]="{
-                'alert-danger':
-                  images.invalid &&
-                  (images.touched || addApartmentForm.submitted)
-              }"
-              (change)="selectFiles($event)"
-              #images="ngModel"
-            />
-            <label for="file" class="custom-label">Upload Images</label>
+                required
+                class="form-control"
+                type="file"
+                name="ii"
+                ngModel
+                #images="ngModel"
+                accept="image/*"
+                id="formFileMultiple"
+                (change)="selectFiles($event)"
+                [ngClass]="{
+                  'alert-danger':
+                    images.invalid &&
+                    (images.touched || addApartmentForm.submitted)
+                }"
+              />
+            <label for="formFileMultiple" class="custom-label">Upload Images</label>
           </div>
           <div>
             <div

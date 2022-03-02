@@ -33,7 +33,7 @@ const routes: Routes = [
     ],canActivate:[OwnerGuard]
   },
   { path: 'find', component: ListingComponent },
-  { path: 'find/apart-details', component: ApartmentDetailsComponent },
+  { path: 'find/apart-details/:id', component: ApartmentDetailsComponent },
   { path: 'profile', component: ProfileComponent  },
   //canActivate:[UserGuard, OwnerGuard,AuthGuard]
   {

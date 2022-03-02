@@ -1,7 +1,7 @@
-import { img } from './../../_models/user.model';
+import { img,user_info } from './../../_models/user.model';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { apart } from 'src/app/_models/user.model';
+import { apart,cities } from 'src/app/_models/user.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DataService } from 'src/app/_services/data.service';
 
@@ -11,14 +11,46 @@ import { DataService } from 'src/app/_services/data.service';
   styleUrls: ['./add-apartment.component.scss']
 })
 export class AddApartmentComponent implements OnInit {
+  user_info:user_info
 
   imagesUrl !: File
   img!: any
+
+  gov: cities[] = [];
+  cities: cities[] = [];
+  test = true;
+
   constructor(private http: HttpClient, private data: DataService) { }
 
 
   ngOnInit() {
+    this.getcities();
   }
+
+
+  getcities() {
+    this.http.get('http://127.0.0.1:8000/api/governates').subscribe(data => {
+
+      for (let i = 0; i < data['data'].length; i++) {
+        this.gov[i] = (data['data'][i]);
+      }
+    });
+
+  }
+
+
+
+  choosegov(event: any) {
+    this.http.get('http://127.0.0.1:8000/api/findcities/'.concat(event.target.value)).subscribe(data => {
+      for (let i = 0; i < data['data'].length; i++) {
+        this.cities[i] = (data['data'][i]);
+      }
+    });
+    this.test = true;
+  }
+
+
+
 
   addApartment(data: any) {
 
@@ -28,15 +60,16 @@ export class AddApartmentComponent implements OnInit {
 
       db.append(key, data[key])
     }
-    let owner_id:any= 1;
-    let city_id:any= 1;
-    db.append('images', this.imagesUrl, this.imagesUrl.name)
-    db.append('owner_id', owner_id)
-    db.append('city_id', city_id)
+    console.log(this.imagesUrl);
 
+    // let owner_id:any= 1;
+    db.append('images', this.imagesUrl)
+    db.append('owner_id', JSON.parse(localStorage.getItem('user_info'))['id'])
+    db.append('city_id', data['state'])
 
+    //console.log('Bearer '+localStorage.getItem('token'));
     //{ headers: new HttpHeaders().append('Authorization','')}
-    this.http.post('http://127.0.0.1:8000/api/apartements', db).subscribe(data => {
+    this.http.post('http://127.0.0.1:8000/api/apartements', db,{ headers: new HttpHeaders().append('Authorization','Bearer '+localStorage.getItem('token'))}).subscribe(data => {
       console.log(data);
     }, error => {
       console.log(error);
@@ -46,6 +79,7 @@ export class AddApartmentComponent implements OnInit {
 
   selectFiles(event): void {
     this.imagesUrl = event.target.files[0]
+    console.log(this.imagesUrl);
   }
 
 }

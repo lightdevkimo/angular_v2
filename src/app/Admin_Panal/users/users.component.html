@@ -1,4 +1,3 @@
-
 <div class="main-wrapper">
   <app-aside>
     <ng-container class="content">
@@ -9,13 +8,12 @@
           >
         </li>
         <li class="list-divider"></li>
-        
+
         <li class="submenu">
           <a routerLink="/admin-panal/apartments"
-            ><i class=" fas fa-home "></i> <span> Apartments </span>
-            <span class=" menu-arrow"></span
+            ><i class="fas fa-home"></i> <span> Apartments </span>
+            <span class="menu-arrow"></span
           ></a>
-         
         </li>
         <li class="list-divider"></li>
         <li class="submenu active">
@@ -26,14 +24,20 @@
         </li>
 
         <li class="list-divider"></li>
-          <li class="submenu ">
-            <a routerLink="/admin-panal/massages"
-              ><i class="fas fa-comment-alt"></i><span> Messages </span>
-              <span class=" menu-arrow"></span
-            ></a>
-           
-          </li>
-          <li class="list-divider"></li>
+        <li class="submenu">
+          <a routerLink="/admin-panal/massages"
+            ><i class="fas fa-comment-alt"></i><span> Messages </span>
+            <span class="menu-arrow"></span
+          ></a>
+        </li>
+        <li class="list-divider"></li>
+        <li class="submenu">
+          <a routerLink="/admin-panal/add/City"
+            ><i class="fas fa-plus-circle"></i> <span> Add City </span>
+            <span class="menu-arrow"></span
+          ></a>
+        </li>
+        <li class="list-divider"></li>
         <li class="submenu">
           <a (click)="destorySession()"
             ><i class="fas fa-sign-out-alt"></i> <span> Sign out </span>
@@ -48,7 +52,7 @@
       <div class="page-header">
         <div class="row align-items-center">
           <div class="col">
-            <div class="mt-5 ">
+            <div class="mt-5">
               <h4 class="card-title float-left mt-2">Users</h4>
               <a
                 data-toggle="modal"
@@ -170,7 +174,8 @@
             <div class="card-body booking_card">
               <div class="table-responsive">
                 <table
-                  class="datatable table table-stripped table table-hover table-center mb-0"
+                  datatable
+                  class="row-border hover table table-stripped table table-hover table-center mb-0"
                 >
                   <thead>
                     <tr>
@@ -196,7 +201,7 @@
                               width="75px"
                               alt="User Image"
                           /></a>
-                          <a href="users/profile">Tommy Bernal </a>
+                          <a href="users/profile">haaa lala </a>
                         </h2>
                       </td>
                       <td>user</td>
@@ -228,7 +233,228 @@
                           >
                         </div>
                       </td>
-                    </tr><tr>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>
+                        <h2 class="table-avatar">
+                          <a href="users/profile" class="avatar avatar-sm mr-2"
+                            ><img
+                              class="avatar-img rounded-circle"
+                              src="../../assets/assets_admin/img/profiles/avatar-03.jpg"
+                              width="75px"
+                              alt="User Image"
+                          /></a>
+                          <a href="users/profile">lamy kamal </a>
+                        </h2>
+                      </td>
+                      <td>Owner</td>
+                      <td>Tommy@mail.com</td>
+                      <td>
+                        <div class="actions">
+                          <a
+                            href="#"
+                            class="btn btn-rounded bg-dark text-white mr-2"
+                            >Delete</a
+                          >
+                        </div>
+                      </td>
+                      <td>
+                        <div class="actions">
+                          <a
+                            routerLink="edit"
+                            class="btn btn-rounded bg-primary text-white mr-2"
+                            >Edit</a
+                          >
+                        </div>
+                      </td>
+                      <td>
+                        <div class="actions">
+                          <a
+                            routerLink="profile"
+                            class="btn btn-rounded bg-danger text-white mr-2"
+                            >Show</a
+                          >
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>
+                        <h2 class="table-avatar">
+                          <a href="users/profile" class="avatar avatar-sm mr-2"
+                            ><img
+                              class="avatar-img rounded-circle"
+                              src="../../assets/assets_admin/img/profiles/avatar-03.jpg"
+                              width="75px"
+                              alt="User Image"
+                          /></a>
+                          <a href="users/profile">rady Bernal </a>
+                        </h2>
+                      </td>
+                      <td>user</td>
+                      <td>Tommy@mail.com</td>
+                      <td>
+                        <div class="actions">
+                          <a
+                            href="#"
+                            class="btn btn-rounded bg-dark text-white mr-2"
+                            >Delete</a
+                          >
+                        </div>
+                      </td>
+                      <td>
+                        <div class="actions">
+                          <a
+                            routerLink="edit"
+                            class="btn btn-rounded bg-primary text-white mr-2"
+                            >Edit</a
+                          >
+                        </div>
+                      </td>
+                      <td>
+                        <div class="actions">
+                          <a
+                            routerLink="profile"
+                            class="btn btn-rounded bg-danger text-white mr-2"
+                            >Show</a
+                          >
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>
+                        <h2 class="table-avatar">
+                          <a href="users/profile" class="avatar avatar-sm mr-2"
+                            ><img
+                              class="avatar-img rounded-circle"
+                              src="../../assets/assets_admin/img/profiles/avatar-03.jpg"
+                              width="75px"
+                              alt="User Image"
+                          /></a>
+                          <a href="users/profile">khaled Bernal </a>
+                        </h2>
+                      </td>
+                      <td>owner</td>
+                      <td>Tommy@mail.com</td>
+                      <td>
+                        <div class="actions">
+                          <a
+                            href="#"
+                            class="btn btn-rounded bg-dark text-white mr-2"
+                            >Delete</a
+                          >
+                        </div>
+                      </td>
+                      <td>
+                        <div class="actions">
+                          <a
+                            routerLink="edit"
+                            class="btn btn-rounded bg-primary text-white mr-2"
+                            >Edit</a
+                          >
+                        </div>
+                      </td>
+                      <td>
+                        <div class="actions">
+                          <a
+                            routerLink="profile"
+                            class="btn btn-rounded bg-danger text-white mr-2"
+                            >Show</a
+                          >
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>
+                        <h2 class="table-avatar">
+                          <a href="users/profile" class="avatar avatar-sm mr-2"
+                            ><img
+                              class="avatar-img rounded-circle"
+                              src="../../assets/assets_admin/img/profiles/avatar-03.jpg"
+                              width="75px"
+                              alt="User Image"
+                          /></a>
+                          <a href="users/profile">mahmoud Bernal </a>
+                        </h2>
+                      </td>
+                      <td>user</td>
+                      <td>Tommy@mail.com</td>
+                      <td>
+                        <div class="actions">
+                          <a
+                            href="#"
+                            class="btn btn-rounded bg-dark text-white mr-2"
+                            >Delete</a
+                          >
+                        </div>
+                      </td>
+                      <td>
+                        <div class="actions">
+                          <a
+                            routerLink="edit"
+                            class="btn btn-rounded bg-primary text-white mr-2"
+                            >Edit</a
+                          >
+                        </div>
+                      </td>
+                      <td>
+                        <div class="actions">
+                          <a
+                            routerLink="profile"
+                            class="btn btn-rounded bg-danger text-white mr-2"
+                            >Show</a
+                          >
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>
+                        <h2 class="table-avatar">
+                          <a href="users/profile" class="avatar avatar-sm mr-2"
+                            ><img
+                              class="avatar-img rounded-circle"
+                              src="../../assets/assets_admin/img/profiles/avatar-03.jpg"
+                              width="75px"
+                              alt="User Image"
+                          /></a>
+                          <a href="users/profile">ali Bernal </a>
+                        </h2>
+                      </td>
+                      <td>user</td>
+                      <td>Tommy@mail.com</td>
+                      <td>
+                        <div class="actions">
+                          <a
+                            href="#"
+                            class="btn btn-rounded bg-dark text-white mr-2"
+                            >Delete</a
+                          >
+                        </div>
+                      </td>
+                      <td>
+                        <div class="actions">
+                          <a
+                            routerLink="edit"
+                            class="btn btn-rounded bg-primary text-white mr-2"
+                            >Edit</a
+                          >
+                        </div>
+                      </td>
+                      <td>
+                        <div class="actions">
+                          <a
+                            routerLink="profile"
+                            class="btn btn-rounded bg-danger text-white mr-2"
+                            >Show</a
+                          >
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
                       <td>1</td>
                       <td>
                         <h2 class="table-avatar">
@@ -271,7 +497,8 @@
                           >
                         </div>
                       </td>
-                    </tr><tr>
+                    </tr>
+                    <tr>
                       <td>1</td>
                       <td>
                         <h2 class="table-avatar">
@@ -314,7 +541,8 @@
                           >
                         </div>
                       </td>
-                    </tr><tr>
+                    </tr>
+                    <tr>
                       <td>1</td>
                       <td>
                         <h2 class="table-avatar">
@@ -357,7 +585,8 @@
                           >
                         </div>
                       </td>
-                    </tr><tr>
+                    </tr>
+                    <tr>
                       <td>1</td>
                       <td>
                         <h2 class="table-avatar">
@@ -400,222 +629,8 @@
                           >
                         </div>
                       </td>
-                    </tr><tr>
-                      <td>1</td>
-                      <td>
-                        <h2 class="table-avatar">
-                          <a href="users/profile" class="avatar avatar-sm mr-2"
-                            ><img
-                              class="avatar-img rounded-circle"
-                              src="../../assets/assets_admin/img/profiles/avatar-03.jpg"
-                              width="75px"
-                              alt="User Image"
-                          /></a>
-                          <a href="users/profile">Tommy Bernal </a>
-                        </h2>
-                      </td>
-                      <td>user</td>
-                      <td>Tommy@mail.com</td>
-                      <td>
-                        <div class="actions">
-                          <a
-                            href="#"
-                            class="btn btn-rounded bg-dark text-white mr-2"
-                            >Delete</a
-                          >
-                        </div>
-                      </td>
-                      <td>
-                        <div class="actions">
-                          <a
-                            routerLink="edit"
-                            class="btn btn-rounded bg-primary text-white mr-2"
-                            >Edit</a
-                          >
-                        </div>
-                      </td>
-                      <td>
-                        <div class="actions">
-                          <a
-                            routerLink="profile"
-                            class="btn btn-rounded bg-danger text-white mr-2"
-                            >Show</a
-                          >
-                        </div>
-                      </td>
-                    </tr><tr>
-                      <td>1</td>
-                      <td>
-                        <h2 class="table-avatar">
-                          <a href="users/profile" class="avatar avatar-sm mr-2"
-                            ><img
-                              class="avatar-img rounded-circle"
-                              src="../../assets/assets_admin/img/profiles/avatar-03.jpg"
-                              width="75px"
-                              alt="User Image"
-                          /></a>
-                          <a href="users/profile">Tommy Bernal </a>
-                        </h2>
-                      </td>
-                      <td>user</td>
-                      <td>Tommy@mail.com</td>
-                      <td>
-                        <div class="actions">
-                          <a
-                            href="#"
-                            class="btn btn-rounded bg-dark text-white mr-2"
-                            >Delete</a
-                          >
-                        </div>
-                      </td>
-                      <td>
-                        <div class="actions">
-                          <a
-                            routerLink="edit"
-                            class="btn btn-rounded bg-primary text-white mr-2"
-                            >Edit</a
-                          >
-                        </div>
-                      </td>
-                      <td>
-                        <div class="actions">
-                          <a
-                            routerLink="profile"
-                            class="btn btn-rounded bg-danger text-white mr-2"
-                            >Show</a
-                          >
-                        </div>
-                      </td>
-                    </tr><tr>
-                      <td>1</td>
-                      <td>
-                        <h2 class="table-avatar">
-                          <a href="users/profile" class="avatar avatar-sm mr-2"
-                            ><img
-                              class="avatar-img rounded-circle"
-                              src="../../assets/assets_admin/img/profiles/avatar-03.jpg"
-                              width="75px"
-                              alt="User Image"
-                          /></a>
-                          <a href="users/profile">Tommy Bernal </a>
-                        </h2>
-                      </td>
-                      <td>user</td>
-                      <td>Tommy@mail.com</td>
-                      <td>
-                        <div class="actions">
-                          <a
-                            href="#"
-                            class="btn btn-rounded bg-dark text-white mr-2"
-                            >Delete</a
-                          >
-                        </div>
-                      </td>
-                      <td>
-                        <div class="actions">
-                          <a
-                            routerLink="edit"
-                            class="btn btn-rounded bg-primary text-white mr-2"
-                            >Edit</a
-                          >
-                        </div>
-                      </td>
-                      <td>
-                        <div class="actions">
-                          <a
-                            routerLink="profile"
-                            class="btn btn-rounded bg-danger text-white mr-2"
-                            >Show</a
-                          >
-                        </div>
-                      </td>
-                    </tr><tr>
-                      <td>1</td>
-                      <td>
-                        <h2 class="table-avatar">
-                          <a href="users/profile" class="avatar avatar-sm mr-2"
-                            ><img
-                              class="avatar-img rounded-circle"
-                              src="../../assets/assets_admin/img/profiles/avatar-03.jpg"
-                              width="75px"
-                              alt="User Image"
-                          /></a>
-                          <a href="users/profile">Tommy Bernal </a>
-                        </h2>
-                      </td>
-                      <td>user</td>
-                      <td>Tommy@mail.com</td>
-                      <td>
-                        <div class="actions">
-                          <a
-                            href="#"
-                            class="btn btn-rounded bg-dark text-white mr-2"
-                            >Delete</a
-                          >
-                        </div>
-                      </td>
-                      <td>
-                        <div class="actions">
-                          <a
-                            routerLink="edit"
-                            class="btn btn-rounded bg-primary text-white mr-2"
-                            >Edit</a
-                          >
-                        </div>
-                      </td>
-                      <td>
-                        <div class="actions">
-                          <a
-                            routerLink="profile"
-                            class="btn btn-rounded bg-danger text-white mr-2"
-                            >Show</a
-                          >
-                        </div>
-                      </td>
-                    </tr><tr>
-                      <td>1</td>
-                      <td>
-                        <h2 class="table-avatar">
-                          <a href="users/profile" class="avatar avatar-sm mr-2"
-                            ><img
-                              class="avatar-img rounded-circle"
-                              src="../../assets/assets_admin/img/profiles/avatar-03.jpg"
-                              width="75px"
-                              alt="User Image"
-                          /></a>
-                          <a href="users/profile">Tommy Bernal </a>
-                        </h2>
-                      </td>
-                      <td>user</td>
-                      <td>Tommy@mail.com</td>
-                      <td>
-                        <div class="actions">
-                          <a
-                            href="#"
-                            class="btn btn-rounded bg-dark text-white mr-2"
-                            >Delete</a
-                          >
-                        </div>
-                      </td>
-                      <td>
-                        <div class="actions">
-                          <a
-                            routerLink="edit"
-                            class="btn btn-rounded bg-primary text-white mr-2"
-                            >Edit</a
-                          >
-                        </div>
-                      </td>
-                      <td>
-                        <div class="actions">
-                          <a
-                            routerLink="profile"
-                            class="btn btn-rounded bg-danger text-white mr-2"
-                            >Show</a
-                          >
-                        </div>
-                      </td>
-                    </tr><tr>
+                    </tr>
+                    <tr>
                       <td>1</td>
                       <td>
                         <h2 class="table-avatar">
@@ -667,7 +682,7 @@
         </div>
       </div>
     </div>
-  
+
     <!-- <div id="delete_asset" class="modal fade delete-modal" role="dialog">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">

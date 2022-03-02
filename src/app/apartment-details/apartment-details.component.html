@@ -1,158 +1,182 @@
 <app-overlay>
-<ng-container class="content">
-    <h1 data-aos="fade-up">Details </h1>
-
-</ng-container>
+  <ng-container class="content">
+    <h1 data-aos="fade-up">Details</h1>
+  </ng-container>
 </app-overlay>
-<div class="site-section" data-aos="fade">
+<div class="site-section" data-aos="fade" >
   <div class="container-fluid">
-
-
     <div class="row">
-      <div class="col-md-12 mb-4 mb-lg-4 col-lg-8 d-flex justify-content-center  ">
-        
-        <div class="card" style="width:750px">
+      <div
+        class="col-md-12 mb-4 mb-lg-4 col-lg-8 d-flex justify-content-center"
+      >
+        <div class="card" style="width: 750px">
+          <div
+            id="myCarousel"
+            class="carousel slide carousel-fade"
+            data-ride="carousel"
+            data-interval="6000"
+          >
+            <ol class="carousel-indicators">
+              <li
+                data-target="#myCarousel"
+                data-slide-to="0"
+                class="active"
+              ></li>
+              <li data-target="#myCarousel" data-slide-to="1"></li>
+              <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img
+                  class="first-slide"
+                  [src]='url+apart.link'
+                />
+              </div>
+              <div class="carousel-item">
+                <img
+                  class="second-slide"
+                  [src]='url+apart.link'
+                  alt=""
+                />
+              </div>
+              <div class="carousel-item">
+                <img
+                  class="third-slide"
+                  [src]='url+apart.link'
+                  alt=""
+                />
+              </div>
+            </div>
+            <a
+              class="carousel-control-prev"
+              href="#myCarousel"
+              role="button"
+              data-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a
+              class="carousel-control-next"
+              href="#myCarousel"
+              role="button"
+              data-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
 
-           <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval= "6000">
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-      </ol>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img class="first-slide" src="https://images5.alphacoders.com/431/431885.jpg">
-       
-        </div>
-        <div class="carousel-item">
-          <img class="second-slide" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-fVv6bAGKlo6T9sqHTxjPqrkgUc_gLJt9hQZu6fKRw7LtX8zO" alt="">
-          
-        </div>
-        <div class="carousel-item">
-          <img class="third-slide" src="https://www.smak.co.za/images/bg.jpg" alt="">
-          
-        </div>
-      </div>
-      <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
-
-          
           <div class="card-body">
-            <h5 class="card-title">owner : <span class="text-danger"> hamada</span> </h5>
-                            <h5 class="card-text ">Price :<span class="text-primary">500$</span> </h5>
-                            <h5 class="card-text">Address : <span class="text-danger">94 Abdul-Elgoad St,Dirout,Assuit,Egypt  </span> 
-                              </h5>
-                            <h5 class="card-text  ">Max Persons : 
-                              <span class="text-success icon icon-user p-1"></span>
-                              <span class="text-success icon icon-user p-1"></span>
-                              <span class="text-success icon icon-user p-1"></span>
-                              <span class="text-success icon icon-user p-1"></span>
-                              <span class=" icon icon-user p-1"></span>
-                              <span class="icon icon-user p-1"></span>
-                
-                            </h5>
-                            <h5 class="card-text">Near by :
-                           <span class="text-danger">
-                              Lorem ipsum dolor sit assumenda. Neque enim temporibus 
-                            </span>
-                          
-                          </h5>
+            <!-- <h5 class="card-title">
+              owner : <span class="text-danger"> </span>
+            </h5> -->
+            <h5 class="card-text">
+              Price :<span class="text-primary">{{ apart.price }}</span>
+            </h5>
+            <h5 class="card-text">
+              Address :
+              <span class="text-danger"
+                >{{ apart.address }}
+              </span>
+            </h5>
+            <h5 class="card-text">
+              Max Persons :{{ apart.max }}
+              <!-- <span class="text-success icon icon-user p-1"></span>
+              <span class="text-success icon icon-user p-1"></span>
+              <span class="text-success icon icon-user p-1"></span>
+              <span class="text-success icon icon-user p-1"></span>
+              <span class="icon icon-user p-1"></span>
+              <span class="icon icon-user p-1"></span> -->
+            </h5>
+            <h5 class="card-text">
+              Near by :
+              <span class="text-danger">
+                {{ apart.nearby }}
+              </span>
+            </h5>
 
-                            <h5 class="card-text mb-5">Gender :<span class="text-danger">Male</span>  </h5>
-                            <a routerLink="apart-details" class="d-grid gap-2 col-6 mx-auto btn btn-danger">reserve</a>
+            <h5 class="card-text mb-5">
+              Gender :<span class="text-danger"> {{ apart.gender }}</span>
+            </h5>
+            <a
+              routerLink="apart-details"
+              class="d-grid gap-2 col-6 mx-auto btn btn-danger"
+              >reserve</a
+            >
           </div>
         </div>
-
       </div>
-      <div class="col-md-12 mb-4 mb-lg-4  mt-5 col-lg-4 ">
-        <div class="card" style="width:450px">
+      <div class="col-md-12 mb-4 mb-lg-4 mt-5 col-lg-4">
+        <div class="card" style="width: 450px">
           <div class="card-body">
             <h4 class="card-title text-center">Description</h4>
-            <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint delectus nobis officiis facere sed dignissimos assumenda asperiores voluptatibus rem obcaecati ratione hic repudiandae sequi, odio tempora dicta deserunt. Id, sed! Lorem ipsum dolor sit amet consectetur adipisicing elit. In, reiciendis. Quaerat dignissimos doloremque quod illum nulla commodi. Inventore deserunt nam maiores exercitationem, sint facere odit, perspiciatis eius placeat unde non?</p>
-            
+            <p class="card-text">
+              {{ apart.description }}
+            </p>
           </div>
         </div>
       </div>
- 
     </div>
-    
   </div>
 </div>
-<div class="site-section">
+<!-- <div class="site-section">
   <div class="container">
     <div class="row">
-
-      <div class="col-md-8 d-flex justify-content-center ">
+      <div class="col-md-8 d-flex justify-content-center">
         <div class="pt-5">
-          <div class="card" style="width:700px">
+          <div class="card" style="width: 700px">
             <div class="card-body">
-          <h2 class="text-danger text-center mb-5">People Comments</h2>
-          <ul class="comment-list">
-            <li class="comment">
-              <div class="vcard bio">
-                <img src="../../assets/images/comment_vcard.jpg" alt="Free Website Template by Free-Template.co">
-              </div>
-              <div class="comment-body">
-                <h3>Jean Doe</h3>
-                <div class="meta">January 9, 2018 at 2:21pm</div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-              </div>
-            </li>
-            <li class="comment">
-              <div class="vcard bio">
-                <img src="../../assets/images/comment_vcard.jpg" alt="Free Website Template by Free-Template.co">
-              </div>
-              <div class="comment-body">
-                <h3>Jean Doe</h3>
-                <div class="meta">January 9, 2018 at 2:21pm</div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-              </div>
-            </li>
-          </ul>
+              <h2 class="text-danger text-center mb-5">People Comments</h2>
+              <ul class="comment-list">
+                <li class="comment">
+                  <div class="vcard bio">
+                    <img
+                      src="../../assets/images/comment_vcard.jpg"
+                      alt="Free Website Template by Free-Template.co"
+                    />
+                  </div>
+                  <div class="comment-body">
+                    <h3>Jean Doe</h3>
+                    <div class="meta">January 9, 2018 at 2:21pm</div>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                      Pariatur quidem laborum necessitatibus, ipsam impedit
+                      vitae autem, eum officia, fugiat saepe enim sapiente iste
+                      iure! Quam voluptas earum impedit necessitatibus, nihil?
+                    </p>
+                  </div>
+                </li>
+                <li class="comment">
+                  <div class="vcard bio">
+                    <img
+                      src="../../assets/images/comment_vcard.jpg"
+                      alt="Free Website Template by Free-Template.co"
+                    />
+                  </div>
+                  <div class="comment-body">
+                    <h3>Jean Doe</h3>
+                    <div class="meta">January 9, 2018 at 2:21pm</div>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                      Pariatur quidem laborum necessitatibus, ipsam impedit
+                      vitae autem, eum officia, fugiat saepe enim sapiente iste
+                      iure! Quam voluptas earum impedit necessitatibus, nihil?
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
-          </div>
-          <!-- END comment-list -->
-          
-          <!-- <div class="comment-form-wrap pt-5">
-            <h3 class="mb-5">Leave a comment</h3>
-            <form action="#" class="p-5 bg-light">
-              <div class="form-group">
-                <label for="name">Name *</label>
-                <input type="text" class="form-control" id="name">
-              </div>
-              <div class="form-group">
-                <label for="email">Email *</label>
-                <input type="email" class="form-control" id="email">
-              </div>
-              <div class="form-group">
-                <label for="website">Website</label>
-                <input type="url" class="form-control" id="website">
-              </div>
 
-              <div class="form-group">
-                <label for="message">Message</label>
-                <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
-              </div>
-              <div class="form-group">
-                <input type="submit" value="Post Comment" class="btn btn-primary text-white btn-md">
-              </div>
-
-            </form>
-          </div> -->
         </div>
-
-
       </div>
-
-      
-      
     </div>
   </div>
-</div>
+</div> -->
