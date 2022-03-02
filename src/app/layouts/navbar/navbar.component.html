@@ -71,12 +71,16 @@
                   <img src="../../../assets/images/PersonalImage.png" alt="mdo" width="32" height="32" class="rounded-circle mr-3">
                 </a>
                 <ul class="dropdown arrow-top">
-                    <li><a  class="dropdown-item" routerLink="/profile">Profile</a></li>
-                    <li><a *ngIf="role===2" class="dropdown-item" routerLink="/users">All users</a></li>
-                    <li><a *ngIf="role>=1" class="dropdown-item" routerLink="/apartment/add">Add Appartment</a></li>
-                    <li><a *ngIf="role>=1" class="dropdown-item" routerLink="/apartment/edit">Edit Appartment</a></li>
+                    <li><a  class="dropdown-item" routerLink="profile" [ngClass]="{'active':current=='profile'}" 
+                      (click)='changeActive("profile")'><i class="fas fa-user"></i> Profile</a></li>
+                    <li><a *ngIf="role===2" class="dropdown-item" routerLink="/admin-panal/statics" [ngClass]="{'active':current=='admin-panal'}" 
+                      (click)='changeActive("admin-panal")'><i class="fas fa-user-cog"></i> Admin Panal</a></li>
+                    <li><a *ngIf="role>=1" class="dropdown-item" routerLink="/apartment/add" [ngClass]="{'active':current=='apartment/add'}" 
+                      (click)='changeActive("apartment/add")'><i class="fas fa-plus-circle"></i> Add Appartment</a></li>
+                    <li><a *ngIf="role>=1" class="dropdown-item" routerLink="/apartment/edit" [ngClass]="{'active':current=='apartment/edit'}" 
+                      (click)='changeActive("apartment/edit")'><i class="fas fa-edit"></i> Edit Appartment</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" (click)="destorySession()" >Sign out</a></li>
+                    <li><a class="dropdown-item" (click)="destorySession()" ><i class="fas fa-sign-in-alt"></i> Sign out</a></li>
                 </ul>
               </li>
               

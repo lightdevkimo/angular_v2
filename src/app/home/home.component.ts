@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location, LocationStrategy } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -11,5 +12,5 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  
 }

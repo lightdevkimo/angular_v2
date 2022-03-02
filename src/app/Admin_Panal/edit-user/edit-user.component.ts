@@ -8,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class EditUserComponent implements OnInit {
 
   constructor() { }
+  isLoading = false;
 
+  error:string=null
   ngOnInit(): void {
   }
 

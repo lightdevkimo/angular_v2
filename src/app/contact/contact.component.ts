@@ -10,6 +10,8 @@ import { DataService } from '../_services/data.service';
 })
 export class ContactComponent implements OnInit {
 
+  error: string = '';
+
   constructor(private http: HttpClient, private data: DataService) { }
 
   ngOnInit(): void {
@@ -22,7 +24,13 @@ export class ContactComponent implements OnInit {
       console.log(data);
     },error=>{
       console.log(error);
+
+      for (const e in error.error.errors) {
+        this.error += error.error.errors[e];
+      }
+
     });
+
 
   }
 

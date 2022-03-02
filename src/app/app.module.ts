@@ -17,10 +17,15 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
 import {  HttpClientModule } from '@angular/common/http';
 import { ApartmentDetailsComponent } from './apartment-details/apartment-details.component';
 import { ProfileComponent } from './profile/profile.component';
-import { UsersComponent } from './users/users.component';
-import { EditUserComponent } from './edit-user/edit-user.component';
+import { UsersComponent } from './Admin_Panal/users/users.component';
+import { EditUserComponent } from './Admin_Panal/edit-user/edit-user.component';
 import { AddApartmentComponent } from './apartment/add-apartment/add-apartment.component';
 import { EditApartmentComponent } from './apartment/edit-apartment/edit-apartment.component';
+import { AsideComponent } from './Admin_Panal/aside/aside.component';
+import { StaticsComponent } from './Admin_Panal/statics/statics.component';
+import { ApartmentsComponent } from './Admin_Panal/apartments/apartments.component';
+import { MessagesComponent } from './Admin_Panal/messages/messages.component';
+
 
 @NgModule({
   declarations: [
@@ -41,7 +46,12 @@ import { EditApartmentComponent } from './apartment/edit-apartment/edit-apartmen
     UsersComponent,
     EditUserComponent,
     AddApartmentComponent,
-    EditApartmentComponent
+    EditApartmentComponent,
+    AsideComponent,
+    StaticsComponent,
+    ApartmentsComponent,
+    MessagesComponent,
+
   ],
   imports: [
     BrowserModule,

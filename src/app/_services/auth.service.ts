@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http'
 import { SignUpResponse, SignupData, LoginData,LoginResponse, User } from '../_models/user.model';
 import { catchError, Subject, tap, throwError } from 'rxjs';
@@ -10,7 +10,8 @@ export class AuthService {
   constructor(private http:HttpClient) { }
 
   user = new Subject <User>();
-
+  isLogin=false;
+  changeLogin : EventEmitter<boolean> = new EventEmitter<boolean>();
   signup(user:SignupData){
     return this.http.post<SignUpResponse>('',
     {
@@ -36,11 +37,27 @@ export class AuthService {
           return throwError(()=> new Error(errMsg));
         }
         switch(err.error){
-          
+
           default:
             errMsg = 'An error occurred!'
 
         }
         return throwError(()=>new Error(errMsg))
   }
+
+  checktoken(status:boolean){
+    if(!status){
+      localStorage.removeItem('token');
+      localStorage.removeItem('role');
+      localStorage.removeItem('salt');
+      localStorage.removeItem('user_info');
+      this.changeLogin.emit(false);
+      return;
+    }
+    if(localStorage.getItem("token")){
+      this.isLogin=true;
+      this.changeLogin.emit(true);
+    }
+  }
+
 }

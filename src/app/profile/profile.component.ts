@@ -6,10 +6,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-role='user'
+// role='admin'
   constructor() { }
-
+  user_info={
+    "id": 0,
+    "name": "",
+    "role": 1,
+    "email": "",
+    "gender": ""
+}
   ngOnInit(): void {
+    this.user_info = JSON.parse(localStorage.getItem('user_info'));
+    console.log(this.user_info);
+
   }
 
 }

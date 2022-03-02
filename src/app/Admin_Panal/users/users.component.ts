@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-
+  isLogin=true
   constructor() { }
 
   ngOnInit(): void {
   }
-
+  destorySession(){
+    this.isLogin=false
+  }
 }

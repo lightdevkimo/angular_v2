@@ -1,0 +1,332 @@
+<div class="main-wrapper">
+  <app-aside>
+    <ng-container class="content">
+      <ul>
+        <li>
+          <a routerLink="/admin-panal/statics"
+            ><i class="fas fa-tachometer-alt"></i> <span>Statics</span></a
+          >
+        </li>
+        <li class="list-divider"></li>
+
+        <li class="active">
+          <a routerLink="/admin-panal/apartments"
+            ><i class="fas fa-home"></i> <span> Apartments </span>
+            <span class="menu-arrow"></span
+          ></a>
+        </li>
+        <li class="list-divider"></li>
+
+        <li class="submenu">
+          <a routerLink="/admin-panal/users"
+            ><i class="fas fa-user"></i> <span> Users </span>
+            <span class="menu-arrow"></span
+          ></a>
+        </li>
+        <li class="list-divider"></li>
+        <li class="submenu">
+          <a routerLink="/admin-panal/massages"
+            ><i class="fas fa-comment-alt"></i> <span> Messages </span>
+            <span class="menu-arrow"></span
+          ></a>
+        </li>
+        <li class="list-divider"></li>
+        <li class="submenu">
+          <a (click)="destorySession()"
+            ><i class="fas fa-sign-out-alt"></i> <span> Sign out </span>
+            <span class="menu-arrow"></span
+          ></a>
+        </li>
+
+        <!-- <li class="submenu">
+            <a 
+              ><i class="fas fa-table"></i> <span> Tables </span>
+              <span class="menu-arrow"></span
+            ></a>
+            <ul class="" style="display: none">
+              <li><a href="tables-basic.html">Basic Table </a></li>
+              <li><a href="tables-datatables.html">Data Table </a></li>
+            </ul>
+          </li> -->
+        <!-- <li class="list-divider"></li>
+          <li class="submenu">
+            <a 
+              ><i class="fas fa-columns"></i> <span> Pages </span>
+              <span class="menu-arrow"></span
+            ></a>
+            <ul class="" style="display: block">
+              <li><a href="login.html">Login </a></li>
+              <li><a href="register.html">Register </a></li>
+              <li><a href="forgot-password.html">Forgot Password </a></li>
+              <li><a href="change-password.html">Change Password </a></li>
+              <li><a href="lock-screen.html">Lockscreen </a></li>
+              <li><a href="profile.html">Profile </a></li>
+              <li><a href="gallery.html">Gallery </a></li>
+              <li><a href="error-404.html">404 Error </a></li>
+              <li><a href="error-500.html">500 Error </a></li>
+              <li><a href="blank-page.html">Blank Page </a></li>
+            </ul>
+          </li> -->
+      </ul>
+    </ng-container>
+  </app-aside>
+  <div class="page-wrapper mt-5">
+    <div class="content container-fluid">
+        <a routerLink="/apartment/add" class="rounded btn btn-danger mb-5"> Add Apartment</a>
+      <div class="row">
+        <div class="col-md-12 d-flex">
+          <div class="card card-table flex-fill">
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-hover table-center">
+                  <thead>
+                    <tr>
+                      <th>Apartment ID</th>
+                      <th>Owner Name</th>
+                      <th>Email ID</th>
+                      <th>user name</th>
+                      <th class="text-center">Apartment Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="text-nowrap">
+                        <div>#0001</div>
+                      </td>
+                      <td class="text-nowrap">Tommy Bernal</td>
+                      <td>
+                        <a
+                          href="/cdn-cgi/l/email-protection"
+                          class="__cf_email__"
+                          data-cfemail="3743585a5a4e55524559565b77524f565a475b521954585a"
+                          >[email&#160;protected]</a
+                        >
+                      </td>
+                      <td>tony</td>
+
+                      <td class="text-center">
+                        <span class="badge badge-pill bg-success inv-badge"
+                          >Live</span
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-nowrap">
+                        <div>#0001</div>
+                      </td>
+                      <td class="text-nowrap">Tommy Bernal</td>
+                      <td>
+                        <a
+                          href="/cdn-cgi/l/email-protection"
+                          class="__cf_email__"
+                          data-cfemail="3743585a5a4e55524559565b77524f565a475b521954585a"
+                          >[email&#160;protected]</a
+                        >
+                      </td>
+                      <td>tony</td>
+
+                      <td class="text-center">
+                        <span class="badge badge-pill bg-success inv-badge"
+                          >Live</span
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-nowrap">
+                        <div>#0001</div>
+                      </td>
+                      <td class="text-nowrap">Tommy Bernal</td>
+                      <td>
+                        <a
+                          href="/cdn-cgi/l/email-protection"
+                          class="__cf_email__"
+                          data-cfemail="3743585a5a4e55524559565b77524f565a475b521954585a"
+                          >[email&#160;protected]</a
+                        >
+                      </td>
+                      <td>tony</td>
+
+                      <td class="text-center">
+                        <span class="badge badge-pill bg-success inv-badge"
+                          >Live</span
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-nowrap">
+                        <div>#0001</div>
+                      </td>
+                      <td class="text-nowrap">Tommy Bernal</td>
+                      <td>
+                        <a
+                          href="/cdn-cgi/l/email-protection"
+                          class="__cf_email__"
+                          data-cfemail="3743585a5a4e55524559565b77524f565a475b521954585a"
+                          >[email&#160;protected]</a
+                        >
+                      </td>
+                      <td>tony</td>
+
+                      <td class="text-center">
+                        <span class="badge badge-pill bg-success inv-badge"
+                          >Live</span
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-nowrap">
+                        <div>#0001</div>
+                      </td>
+                      <td class="text-nowrap">Tommy Bernal</td>
+                      <td>
+                        <a
+                          href="/cdn-cgi/l/email-protection"
+                          class="__cf_email__"
+                          data-cfemail="3743585a5a4e55524559565b77524f565a475b521954585a"
+                          >[email&#160;protected]</a
+                        >
+                      </td>
+                      <td>tony</td>
+
+                      <td class="text-center">
+                        <span class="badge badge-pill bg-success inv-badge"
+                          >Live</span
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-nowrap">
+                        <div>#0001</div>
+                      </td>
+                      <td class="text-nowrap">Tommy Bernal</td>
+                      <td>
+                        <a
+                          href="/cdn-cgi/l/email-protection"
+                          class="__cf_email__"
+                          data-cfemail="3743585a5a4e55524559565b77524f565a475b521954585a"
+                          >[email&#160;protected]</a
+                        >
+                      </td>
+                      <td>tony</td>
+
+                      <td class="text-center">
+                        <span class="badge badge-pill bg-success inv-badge"
+                          >Live</span
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-nowrap">
+                        <div>#0001</div>
+                      </td>
+                      <td class="text-nowrap">Tommy Bernal</td>
+                      <td>
+                        <a
+                          href="/cdn-cgi/l/email-protection"
+                          class="__cf_email__"
+                          data-cfemail="3743585a5a4e55524559565b77524f565a475b521954585a"
+                          >[email&#160;protected]</a
+                        >
+                      </td>
+                      <td>tony</td>
+
+                      <td class="text-center">
+                        <span class="badge badge-pill bg-success inv-badge"
+                          >Live</span
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-nowrap">
+                        <div>#0001</div>
+                      </td>
+                      <td class="text-nowrap">Tommy Bernal</td>
+                      <td>
+                        <a
+                          href="/cdn-cgi/l/email-protection"
+                          class="__cf_email__"
+                          data-cfemail="3743585a5a4e55524559565b77524f565a475b521954585a"
+                          >[email&#160;protected]</a
+                        >
+                      </td>
+                      <td>tony</td>
+
+                      <td class="text-center">
+                        <span class="badge badge-pill bg-success inv-badge"
+                          >Live</span
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-nowrap">
+                        <div>#0001</div>
+                      </td>
+                      <td class="text-nowrap">Tommy Bernal</td>
+                      <td>
+                        <a
+                          href="/cdn-cgi/l/email-protection"
+                          class="__cf_email__"
+                          data-cfemail="3743585a5a4e55524559565b77524f565a475b521954585a"
+                          >[email&#160;protected]</a
+                        >
+                      </td>
+                      <td>tony</td>
+
+                      <td class="text-center">
+                        <span class="badge badge-pill bg-success inv-badge"
+                          >Live</span
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-nowrap">
+                        <div>#0001</div>
+                      </td>
+                      <td class="text-nowrap">Tommy Bernal</td>
+                      <td>
+                        <a
+                          href="/cdn-cgi/l/email-protection"
+                          class="__cf_email__"
+                          data-cfemail="3743585a5a4e55524559565b77524f565a475b521954585a"
+                          >[email&#160;protected]</a
+                        >
+                      </td>
+                      <td>tony</td>
+
+                      <td class="text-center">
+                        <span class="badge badge-pill bg-success inv-badge"
+                          >Live</span
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-nowrap">
+                        <div>#0001</div>
+                      </td>
+                      <td class="text-nowrap">Tommy Bernal</td>
+                      <td>
+                        <a
+                          href="/cdn-cgi/l/email-protection"
+                          class="__cf_email__"
+                          data-cfemail="3743585a5a4e55524559565b77524f565a475b521954585a"
+                          >[email&#160;protected]</a
+                        >
+                      </td>
+                      <td>tony</td>
+
+                      <td class="text-center">
+                        <span class="badge badge-pill bg-success inv-badge"
+                          >Live</span
+                        >
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

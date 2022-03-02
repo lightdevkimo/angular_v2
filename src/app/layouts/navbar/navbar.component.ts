@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/_services/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,17 +7,37 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  isLogin =true;
-  current='home';
-role=1
+
+  constructor(private auth:AuthService) { }
+
+  isLogin =false;
+  current='';
+  role=2
   changeActive(active:string){
     this.current=active;
   }
-  constructor() { }
 
   ngOnInit(): void {
+
+    if(localStorage.getItem("token")){
+      this.isLogin=true;
+    }
+
+    // this.auth.checktoken(true);
+    // this.isLogin=this.token.isLogin;
+    this.auth.changeLogin.subscribe(
+      res=>{
+        this.isLogin = res;
+      }
+    )
+    console.log(this.auth.isLogin);
   }
   destorySession(){
-    this.isLogin=false
+    //this.isLogin=true
+    this.auth.checktoken(false);
+    // this.isLogin=false;
+
   }
 }
+
+
