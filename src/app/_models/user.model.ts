@@ -81,11 +81,9 @@ img:File;
 }
 
 export interface user_info{
-
     id:number,
     name: string,
-    role:number,
+    role:any,
     email:string,
     gender:string
-    
 }

@@ -9,15 +9,15 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./apartment-details.component.scss']
 })
 export class ApartmentDetailsComponent implements OnInit {
-  
-  url="http://127.0.0.1:8000/storage/images/"
-  apart:apart
-  id:string
-  constructor(private activeRouter:ActivatedRoute,private http: HttpClient) { }
+
+  url = "http://127.0.0.1:8000/storage/images/"
+  apart: apart
+  id: string
+  constructor(private activeRouter: ActivatedRoute, private http: HttpClient) { }
 
   ngOnInit(): void {
     console.log(this.activeRouter.snapshot.params)
-    this.id=this.activeRouter.snapshot.params['id']
+    this.id = this.activeRouter.snapshot.params['id']
     console.log(this.id)
 
     this.showApart()
@@ -27,12 +27,12 @@ export class ApartmentDetailsComponent implements OnInit {
     this.http.get('http://127.0.0.1:8000/api/apartements/' + this.id).subscribe(data => {
 
       //for (let i = 0; i < data['data'].length; i++) {
-       // this.apart[i] = (data['data'][i]);
-        console.log(data);
-        this.apart=data['data'];
-        console.log(this.apart);
+      // this.apart[i] = (data['data'][i]);
+      console.log(data);
+      this.apart = data['data'];
+      console.log(this.apart);
 
-     // }
+      // }
     });
 
   }

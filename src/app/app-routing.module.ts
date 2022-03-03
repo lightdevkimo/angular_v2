@@ -49,7 +49,7 @@ const routes: Routes = [
       {path: 'all-apartment', component: EditApartmentComponent},
 
       { path: 'users', component: UsersComponent },
-      { path: 'users/edit', component: EditUserComponent },
+      { path: 'users/edit/:id', component: EditUserComponent },
       { path: 'users/profile', component: ProfileComponent },
     ],canActivate:[AuthGuard]
   },
