@@ -22,17 +22,17 @@ export class ListingComponent implements OnInit {
   gov: cities[] = [];
   cities: cities[] = [];
   apart: apart[] = [];
-  test = false;
-  url="http://127.0.0.1:8000/storge/images/"
+  test = true;
+  url="http://127.0.0.1:8000/storage/images/"
+
 
   getcities() {
-    this.http.get('http://127.0.0.1:8000/api/cities').subscribe(data => {
+    this.http.get('http://127.0.0.1:8000/api/governates').subscribe(data => {
 
       for (let i = 0; i < data['data'].length; i++) {
         this.gov[i] = (data['data'][i]);
       }
     });
-
 
   }
 
@@ -66,13 +66,15 @@ export class ListingComponent implements OnInit {
     }
 
     let params = new HttpParams();
-    params = params.append('gender', data['gender']);
-    params = params.append('max_price', data['min']);
-    params = params.append('min_price', data['max']);
-    params = params.append('city_id', kimo);
+    params =data['gender'] ? params.append('gender', data['gender']):params;
+    params =data['min_price'] ? params.append('min_price', data['min_price']):params;
+    params =data['min_price']? params.append('max_price', +data['min_price']*2):params;
+    params =kimo? params.append('city_id', kimo):params;
+    console.log(params);
 
     this.http.get('http://127.0.0.1:8000/api/apartement/search', { params: params })
       .subscribe((result) => {
+        this.apart=[];
         for (let i = 0; i < result['data'].length; i++) {
           this.apart[i] = (result['data'][i]);
         }
@@ -82,7 +84,7 @@ export class ListingComponent implements OnInit {
   }
 
 
-
+  
 
 }
 

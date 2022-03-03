@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { contact } from '../_models/user.model';
 import { HttpClient } from '@angular/common/http';
@@ -10,18 +11,23 @@ import { DataService } from '../_services/data.service';
 })
 export class ContactComponent implements OnInit {
 
-  constructor(private http: HttpClient, private data: DataService) { }
+  error: string = '';
+
+  constructor(private http: HttpClient, private data: DataService ,private router:Router) { }
 
   ngOnInit(): void {
   }
 
   Sent(postData: contact) {
-    // Send Http request
-    console.log(postData);
     this.data.Sent(postData).subscribe(data=>{
-      console.log(data);
+
+      this.router.navigateByUrl('/home');
+
     },error=>{
       console.log(error);
+      for (const e in error.error.errors) {
+        this.error += error.error.errors[e];
+      }
     });
 
   }

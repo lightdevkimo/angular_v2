@@ -3,7 +3,8 @@ export interface SignupData{
     firstName: string,
     lastName:string,
     email:string,
-    password:string
+    password:string,
+    role:number
 }
 export interface LoginData{
     email:string,
@@ -39,37 +40,50 @@ export class User{
     }
 }
 
+
 export interface cities {
-    id: number,
-    name: string,
-    governorate: string,
-    created_at:string,
-    updated_at:string,
+  id: number,
+  name: string,
+  governorate: string,
+  created_at:string,
+  updated_at:string,
 }
 
 export interface apart{
-  id?:number,
-  description:string,
-  approved:boolean,
-  address:string,
-  price:number,
-  link?:string,
-  gender:string,
-  available:number,
-  max:number,
-  images:string,
-  nearby?:string,
-  owner_id:number,
-  city_id:number,
-  created_at:string,
-  updated_at:string
+id?:number,
+description:string,
+approved:boolean,
+address:string,
+price:number,
+link?:string,
+gender:string,
+available:number,
+max:number,
+images?:any,
+nearby?:string,
+owner_id:number,
+city_id:number,
+created_at:string,
+updated_at:string
 
 }
 
 export interface contact {
-  firstname: string,
-  lastname: string,
-  email:string,
-  subject:string,
-  message:string
+firstname: string,
+lastname: string,
+email:string,
+subject:string,
+message:string
+}
+
+export interface img{
+img:File;
+}
+
+export interface user_info{
+    id:number,
+    name: string,
+    role:any,
+    email:string,
+    gender:string
 }
