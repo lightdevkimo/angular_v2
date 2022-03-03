@@ -7,39 +7,53 @@ import { user_info } from 'src/app/_models/user.model';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss']
+  styleUrls: ['./users.component.scss'],
 })
 export class UsersComponent implements OnInit, OnDestroy {
-
-  users: user_info[] = []
-  usersub: Subscription
+  users: user_info[] = [];
+  usersub: Subscription;
   error: string = '';
 
-  constructor(private http: HttpClient, private auth: AuthService, private router: Router) { }
+  constructor(
+    private http: HttpClient,
+    private auth: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.Users()
+    this.Users();
   }
 
-
   Users() {
-    this.usersub = this.http.get('http://127.0.0.1:8000/api/users', { headers: new HttpHeaders().append('Authorization', 'Bearer ' + localStorage.getItem('token')) }).subscribe(data => {
+    this.usersub = this.http
+      .get('http://127.0.0.1:8000/api/users', {
+        headers: new HttpHeaders().append(
+          'Authorization',
+          'Bearer ' + localStorage.getItem('token')
+        ),
+      })
+      .subscribe((data) => {
+        for (let i = 0; i < data['data'].length; i++) {
+          this.users[i] = data['data'][i];
+          if (this.users[i]['role'] === 0) {
+            this.users[i]['role'] = 'admin';
+          } else if (this.users[i]['role'] === 1) {
+            this.users[i]['role'] = 'user';
+          } else this.users[i]['role'] === 2;
+          {
+            this.users[i]['role'] = 'owner';
+          }
+        }
 
-      for (let i = 0; i < data['data'].length; i++) {
-        this.users[i] = (data['data'][i]);
-        if (this.users[i]['role'] === 0) {
-          this.users[i]['role'] = 'admin'
-        }
-        else if (this.users[i]['role'] === 1) {
-          this.users[i]['role'] = 'user'
-        }
-        else (this.users[i]['role'] === 2)
-        {
-          this.users[i]['role'] = 'owner'
-        }
-      }
-
-    });
+        setTimeout(() => {
+          $('#datatableexample').DataTable({
+            pagingType: 'full_numbers',
+            pageLength: 10,
+            processing: true,
+            lengthMenu: [10, 20, 50],
+          });
+        }, 1);
+      });
   }
 
   destorySession() {
@@ -47,21 +61,27 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.usersub.unsubscribe()
+    this.usersub.unsubscribe();
   }
 
   onDelete(id: number) {
-    this.http.delete('http://127.0.0.1:8000/api/user/' + id, { headers: new HttpHeaders().append('Authorization', 'Bearer ' + localStorage.getItem('token')) }).subscribe(data => {
-      console.log(data)
-    },
-    (err) => {
-      for (const e in err.error.errors) {
-        this.error += err.error.errors[e];
-      }
-    }
-    );
-    this.Users()
-
-
+    this.http
+      .delete('http://127.0.0.1:8000/api/user/' + id, {
+        headers: new HttpHeaders().append(
+          'Authorization',
+          'Bearer ' + localStorage.getItem('token')
+        ),
+      })
+      .subscribe(
+        (data) => {
+          console.log(data);
+        },
+        (err) => {
+          for (const e in err.error.errors) {
+            this.error += err.error.errors[e];
+          }
+        }
+      );
+    this.Users();
   }
 }
