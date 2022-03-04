@@ -28,7 +28,9 @@ export class LoginComponent implements OnInit {
       localStorage.setItem("user_info",JSON.stringify(res['data']));
       this.auth.checktoken(true);
       this.router.navigateByUrl('/find');
-
+      setTimeout(()=>{
+        location.reload();
+      },1)
     }, error => {
 
       for (const e in error.error.errors) {

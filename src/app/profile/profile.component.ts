@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { user_info, rentApartment } from '../_models/user.model';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams,HttpHeaders } from '@angular/common/http';
 import { map, timeout } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -10,79 +10,185 @@ import { Router } from '@angular/router';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  // role='admin'
   constructor(private http: HttpClient, private router: Router) {}
   user_info: user_info;
-  // rentApartments : rentApartment[]
   rentApartmentsReq: rentApartment[];
+  apartmentRequested:[]=[];
+  apartmentApproved:[]=[];
   rentApartmentsConf: rentApartment[];
-  // apartmentsDetails=[]
+  OwnerApartmentRequests=[];
   apartmentsDetailsReq = [];
   apartmentsDetailsConf = [];
+  Owner_apartments_request = [];
+
   editMode = false;
   currentCard: number;
-  // error:string=""
   errorReq: string = '';
   errorConf: string = '';
-  // updateStatus="failed"
-  // updateMessage="aaaaaaaaaaa"
-  url = "http://127.0.0.1:8000/storage/images/"
-  
-  
+  error:string = '';
+  errorApartmentRequested:string='';
+  errorapartmentApproved:string='';
+  errorOwnerApartmentRequests:string='';
+
+
+  peopleNames=[]
+  personName=""
+
+  url = 'http://127.0.0.1:8000/storage/images/';
+
   ngOnInit(): void {
     this.user_info = JSON.parse(localStorage.getItem('user_info'));
-    // this.getRentApartment()
     this.getRentApartmentReq();
     this.getRentApartmentConf();
-    
-    setTimeout(()=>{
-      console.log(this.rentApartmentsReq);
-    console.log(this.rentApartmentsConf);
-    console.log(this.apartmentsDetailsReq);
-    console.log(this.apartmentsDetailsConf[0]['link']);
-    },2000)
-    
+    this.getApartmentRequested();
+    this.getApartmentApproved();
+    this.getOwnerApartmentRequests();
   }
 
-  /* getRentApartment() {
-    this.http.get<{data:rentApartment[]}>('http://127.0.0.1:8000/api/rent',{
-      params:new HttpParams().append("user",
-      this.user_info['id']
-      // 3
-      )}
-      )
-      // .pipe(map(data => Object.keys(data).map(k => data[k])))
-      .subscribe(res => {
-        // console.log(res['data']);
-        
-        this.rentApartments = res['data'];
-        for(let r of res['data']){
-          this.showApart(r['apartment_id'])
+  ConfirmRequest(index:number) {
+    this.http
+      .put('http://127.0.0.1:8000/api/rent/'+this.OwnerApartmentRequests[index]['id'], {headers: new HttpHeaders().append('Authorization','Bearer '+localStorage.getItem('token'))})
+
+      .subscribe(
+        (data) => {
+          console.log(data);
         }
+        ,(err) => {
+          console.log(err);
 
-    },
-    (err) => {
-      for (const e in err.error.errors) {
-        this.error += err.error.errors[e];
+        }
+        );
+  }
+
+
+  RejectRequest(index:number) {
+    this.http
+      .delete(
+        'http://127.0.0.1:8000/api/rent/' + this.OwnerApartmentRequests[index]['id'],{ headers: new HttpHeaders().append('Authorization','Bearer '+localStorage.getItem('token'))}
+      )
+      .subscribe((data) => {
+        console.log(data);
+      },(err) => {
+          console.log(err);
+
+        }
+        );
+
+    //this.router.navigateByUrl('/find');
+  }
+
+
+  getOwnerApartmentRequests() {
+    this.http
+      .get<{ data: rentApartment[] }>('http://127.0.0.1:8000/api/rent', {
+        params: new HttpParams()
+          .append('owner', this.user_info['id'])
+          .append('status', 'requested'),
+          headers: new HttpHeaders().append('Authorization','Bearer '+localStorage.getItem('token'))
+      })
+
+      .subscribe(
+        (res) => {
+          this.OwnerApartmentRequests = res['data'];
+          for (let r of res['data']) {
+            this.showApart(r['apartment_id'], 'req','owner');
+            this.getUserInfo(r['user_id'])
+          }
+        },
+        (err) => {
+          for (const e in err.error.errors) {
+            this.errorOwnerApartmentRequests += err.error.errors[e];
+          }
+        }
+      );
+  }
+
+  getUserInfo(userId:number):any{
+    this.http.get('http://127.0.0.1:8000/api/user/'+userId).subscribe(
+      data=>{
+        this.personName =  data['data']['name']
+        this.peopleNames.push(this.personName)
       }
-    });
+    )
+  }
 
-  } */
+
+  getApartmentRequested() {
+    this.http
+      .get('http://127.0.0.1:8000/api/apartement/requested',
+      {
+        params: new HttpParams()
+        .append('owner_id', this.user_info['id']),
+        headers: new HttpHeaders().append('Authorization','Bearer '+localStorage.getItem('token'))
+      })
+
+      .subscribe(
+        (data) => {
+          this.apartmentRequested = data['data'];
+          console.log(data)
+        },
+        (err) => {
+          for (const e in err.error.errors) {
+            this.errorApartmentRequested += err.error.errors[e];
+          }
+        }
+      );
+  }
+
+  getApartmentApproved() {
+    this.http
+      .get('http://127.0.0.1:8000/api/apartement/approved',
+      {
+        params: new HttpParams()
+        .append('owner_id', this.user_info['id']),
+        headers: new HttpHeaders().append('Authorization','Bearer '+localStorage.getItem('token'))
+      })
+
+      .subscribe(
+        (data) => {
+          this.apartmentApproved = data['data'];
+          console.log(data)
+        },
+        (err) => {
+          for (const e in err.error.errors) {
+            this.errorapartmentApproved += err.error.errors[e];
+          }
+        }
+      );
+  }
+
+  changePassword(data:any) {
+    data['email']=this.user_info['email']
+    this.http
+      .post('http://127.0.0.1:8000/api/user/changepassword',data,{ headers: new HttpHeaders().append('Authorization','Bearer '+localStorage.getItem('token'))})
+
+      .subscribe(
+        (data) => {
+            console.log(data);
+        },
+        (err) => {
+          console.log(err);
+          for (const e in err.error.errors) {
+            this.error += err.error.errors[e];
+          }
+        }
+      );
+  }
+
   getRentApartmentReq() {
     this.http
       .get<{ data: rentApartment[] }>('http://127.0.0.1:8000/api/rent', {
         params: new HttpParams()
           .append('user', this.user_info['id'])
           .append('status', 'requested'),
+          headers: new HttpHeaders().append('Authorization','Bearer '+localStorage.getItem('token'))
       })
-      // .pipe(map(data => Object.keys(data).map(k => data[k])))
+
       .subscribe(
         (res) => {
-          // console.log(res['data']);
-
           this.rentApartmentsReq = res['data'];
           for (let r of res['data']) {
-            this.showApart(r['apartment_id'], 'req');
+            this.showApart(r['apartment_id'], 'req','user');
           }
         },
         (err) => {
@@ -98,15 +204,14 @@ export class ProfileComponent implements OnInit {
         params: new HttpParams()
           .append('user', this.user_info['id'])
           .append('status', 'confirmed'),
+          headers: new HttpHeaders().append('Authorization','Bearer '+localStorage.getItem('token'))
       })
-      // .pipe(map(data => Object.keys(data).map(k => data[k])))
+
       .subscribe(
         (res) => {
-          // console.log(res['data']);
-
           this.rentApartmentsConf = res['data'];
           for (let r of res['data']) {
-            this.showApart(r['apartment_id'], 'conf');
+            this.showApart(r['apartment_id'], 'conf','user');
           }
         },
         (err) => {
@@ -117,29 +222,30 @@ export class ProfileComponent implements OnInit {
       );
   }
 
-  showApart(id: number, status: string) {
+  showApart(id: number, status: string,type:string) {
     this.http
       .get('http://127.0.0.1:8000/api/apartements/' + id)
       .subscribe((res) => {
-        if (status == 'req') {
+        if (status == 'req' && type == 'user') {
           this.apartmentsDetailsReq.push(res['data']);
-        } else if (status == 'conf') {
+        } else if (status == 'conf' && type == 'user') {
           this.apartmentsDetailsConf.push(res['data']);
+        } else {
+          this.Owner_apartments_request.push(res['data']);
+
         }
       });
   }
 
   withdraw(index: number) {
-    // console.log(this.rentApartments[index]['id']);
-
     this.http
       .delete(
-        'http://127.0.0.1:8000/api/rent/' + this.rentApartmentsReq[index]['id']
+        'http://127.0.0.1:8000/api/rent/' + this.rentApartmentsReq[index]['id'],{ headers: new HttpHeaders().append('Authorization','Bearer '+localStorage.getItem('token'))}
       )
       .subscribe((res) => {
         console.log(res);
       });
-    // this.getRentApartment()
+
     this.router.navigateByUrl('/find');
   }
 
@@ -148,32 +254,30 @@ export class ProfileComponent implements OnInit {
     this.currentCard = cardId;
   }
 
-  updateComment(form: NgForm, rentApart:number) {
-    this.http.post('http://127.0.0.1:8000/api/comment',
-    {
-      
-        "comment":form.value.comment
-      
-    },{
-      params: new HttpParams().append(
-        "user",rentApart['user_id']
-        ).append(
-          "apartment",rentApart['apartment_id']
-          )
-    }).subscribe(
-      res=>{
-        // console.log(res);
-        // alert(res['data'])
-        location.reload()
-      },
-      err=>{
-        // console.log(err);
-        // alert(err['error'])
-        location.reload()
+  updateComment(form: NgForm, rentApart: number) {
+    this.http
+      .post(
+        'http://127.0.0.1:8000/api/comment',
+        {
+          comment: form.value.comment,
+        },
+        {
+          params: new HttpParams()
+            .append('user', rentApart['user_id'])
+            .append('apartment', rentApart['apartment_id']),
+            headers: new HttpHeaders().append('Authorization','Bearer '+localStorage.getItem('token'))
 
-        
-      }
-    )
-    this.changeMode(false, null)
+        }
+
+      )
+      .subscribe(
+        (res) => {
+          location.reload();
+        },
+        (err) => {
+          location.reload();
+        }
+      );
+    this.changeMode(false, null);
   }
 }

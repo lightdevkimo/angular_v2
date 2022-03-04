@@ -50,22 +50,34 @@
                     >Confirmed Requests</a
                   >
                 </li>
+                <!-- //////////////////////////Owner////////////////////////////////// -->
                 <li class="nav-item">
                   <a
                     class="nav-link"
                     data-toggle="tab"
                     *ngIf="user_info.role == 2 || user_info.role == 0"
                     href="#Requested_From_User"
-                    >Sent Requests
+                    >Rent Requests
                   </a>
                 </li>
+
                 <li class="nav-item">
                   <a
                     class="nav-link"
                     data-toggle="tab"
                     *ngIf="user_info.role == 2 || user_info.role == 0"
-                    href="#Pending_listings"
-                    >Pending listings</a
+                    href="#Requested_To_Admin"
+                    >Sent Requests
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    data-toggle="tab"
+                    *ngIf="user_info.role == 2 || user_info.role == 0"
+                    href="#Approved_listings"
+                    >Approved listings</a
                   >
                 </li>
               </ul>
@@ -232,18 +244,21 @@
                     <h5 class="card-title">Change Password</h5>
                     <div class="row">
                       <div class="col-md-10 col-lg-6">
-                        <form>
+                        <div class="alert alert-danger" *ngIf="error">
+                          {{ error }}
+                        </div>
+                        <form #changePasswordForm="ngForm" (ngSubmit)="changePassword(changePasswordForm.value)">
                           <div class="form-group">
                             <label>Old Password</label>
-                            <input type="password" class="form-control" />
+                            <input type="password" name="old_password" ngModel class="form-control" />
                           </div>
                           <div class="form-group">
                             <label>New Password</label>
-                            <input type="password" class="form-control" />
+                            <input type="password" name="password" ngModel class="form-control" />
                           </div>
                           <div class="form-group">
                             <label>Confirm Password</label>
-                            <input type="password" class="form-control" />
+                            <input type="password" name="password_confirmation" ngModel class="form-control" />
                           </div>
                           <button class="btn btn-danger" type="submit">
                             Save Changes
@@ -310,7 +325,7 @@
                   </div>
                 </div>
               </div>
-              <!-- appartment of owner that published -->
+
               <div id="live_listing" class="tab-pane fade">
                 <div class="container-fluid">
                   <div class="row justify-content-center mb-5">
@@ -358,7 +373,7 @@
                           </h5>
                         </div>
                         <div class="card-text">
-                          <!-- <div class="alert " 
+                          <!-- <div class="alert "
                           [ngClass]="{'alert-danger' :updateStatus == 'failed'}"
                           [ngClass]="{'alert-success':updateStatus == 'success'}" *ngIf="updateStatus">
                             {{ updateMessage }}
@@ -402,13 +417,45 @@
                   </div>
                 </div>
               </div>
-              <!-- appartment of owner that Requested_From_User -->
+              <!-- ///////////////////////// Owner////////////////////////// -->
+              <div id="Requested_To_Admin" class="tab-pane fade">
+                <div class="container-fluid">
+                  <div class="row justify-content-center mb-5">
+                    <div class="col-md-7 text-center border-primary">
+                      <h2 class="font-weight-light text-danger">
+                        Requests To Admin
+                      </h2>
+                      <p class="color-black-opacity-5">
+                        This section shows all requests To Admin
+                      </p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 mb-4 mb-lg-4 col-lg-4 m-5" *ngFor="let apartment of apartmentRequested; let i = index">
+                      <div class="card" style="width: 450px">
+                        <img
+                          class="card-img-top"
+                          [src]='url+apartmentRequested[i]["link"]'
+                          alt="Card image"
+                          style="width: 100%"
+                        />
+                        <div class="card-body">
+                          <h5 class="card-text mb-5">
+                            Address : {{ apartment.address }}
+                          </h5>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div id="Requested_From_User" class="tab-pane fade">
                 <div class="container-fluid">
                   <div class="row justify-content-center mb-5">
                     <div class="col-md-7 text-center border-primary">
                       <h2 class="font-weight-light text-danger">
-                        Sent Requests
+                        Requests From Renters
                       </h2>
                       <p class="color-black-opacity-5">
                         This section shows all requests from user to reserve
@@ -417,21 +464,24 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-12 mb-4 mb-lg-4 col-lg-4 m-5">
+                    <div class="col-md-12 mb-4 mb-lg-4 col-lg-4 m-5" *ngFor="let apartment of Owner_apartments_request; let i = index">
                       <div class="card" style="width: 450px">
                         <img
                           class="card-img-top"
-                          src="../../assets/images/apart_3.jpeg"
+                          [src]='url+Owner_apartments_request[i]["link"]'
                           alt="Card image"
                           style="width: 100%"
                         />
                         <div class="card-body">
-                          <h5 class="card-title">Sender => hamada</h5>
+
                           <h5 class="card-text mb-5">
-                            Address => 94 Abdul-Elgoad St,Egypt
+                            Renter : {{ peopleNames[i] }}
                           </h5>
-                          <a href="#" class="btn btn-danger mx-5">Confirm</a>
-                          <a href="#" class="btn btn-danger ml-5">Reject</a>
+                          <h5 class="card-text mb-5">
+                            Address : {{ apartment.address }}
+                          </h5>
+                          <a (click)="ConfirmRequest(i)" class="btn btn-danger mx-5">Confirm</a>
+                          <a (click)="RejectRequest(i)" class="btn btn-danger ml-5">Reject</a>
                         </div>
                       </div>
                     </div>
@@ -439,53 +489,32 @@
                 </div>
               </div>
 
-              <!-- appartment of owner that Pending -->
-              <div id="Pending_listings" class="tab-pane fade">
+              <!-- appartment of  owner that Pending -->
+              <div id="Approved_listings" class="tab-pane fade">
                 <div class="container-fluid">
                   <div class="row justify-content-center mb-5">
                     <div class="col-md-7 text-center border-primary">
                       <h2 class="font-weight-light text-danger">
-                        Pending Listing
+                        Approved Listings
                       </h2>
                       <p class="color-black-opacity-5">
-                        This section shows all the listings those are pending,
-                        the listing can be pending approval, pending photos or
-                        pending payment. Pending approval listings are listings
-                        waiting admin's review...
+                        This section shows all Approved Listings
                       </p>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-12 mb-4 mb-lg-4 col-lg-4 m-5">
+                    <div class="col-md-12 mb-4 mb-lg-4 col-lg-4 m-5" *ngFor="let apartment of apartmentApproved; let i = index">
                       <div class="card" style="width: 450px">
                         <img
                           class="card-img-top"
-                          src="../../assets/images/apart_3.jpeg"
+                          [src]='url+apartmentApproved[i]["link"]'
                           alt="Card image"
                           style="width: 100%"
                         />
                         <div class="card-body">
-                          <h5 class="card-title">owner : hamada</h5>
-                          <h5 class="card-text">Price : 500$</h5>
-                          <h5 class="card-text">
-                            Address : 94 Abdul-Elgoad St,Egypt
+                          <h5 class="card-text mb-5">
+                            Address : {{ apartment.address }}
                           </h5>
-                          <h5 class="card-text">
-                            Max Persons :
-                            <span
-                              class="text-success icon icon-user p-1"
-                            ></span>
-                            <span class="icon icon-user p-1"></span>
-                            <span class="icon icon-user p-1"></span>
-                            <span class="icon icon-user p-1"></span>
-                            <span class="icon icon-user p-1"></span>
-                            <span class="icon icon-user p-1"></span>
-                          </h5>
-                          <h5 class="card-text mb-5">Gender : Male</h5>
-                          <a href="#" class="btn btn-primary mx-5"
-                            >see more...</a
-                          >
-                          <a href="#" class="btn btn-danger ml-5">Remove</a>
                         </div>
                       </div>
                     </div>

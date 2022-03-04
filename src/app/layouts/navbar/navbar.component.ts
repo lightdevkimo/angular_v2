@@ -5,41 +5,52 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
+  constructor(private auth: AuthService, private router: Router) {}
 
-  constructor(private auth:AuthService, private router: Router) { }
-
-  isLogin =false;
-  current='';
-  role=2
-  changeActive(active:string){
-    this.current=active;
+  isLogin = false;
+  current = '';
+  role: number;
+  changeActive(active: string) {
+    this.current = active;
   }
 
   ngOnInit(): void {
+    //user
+    if (
+      localStorage.getItem('salt') ===
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJoZWxsbyI6ImhlbGxvIn0.mzFAbbzRu-Oada93Er2zZj2eDdTcDpe1vLeRLAGCCPc'
+    ) {
+      this.role = 1;
+    } else if (
+      localStorage.getItem('salt') ===
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJoYWJsbGxsIjoiaGhoaGgifQ.YW5xOWv0c2kyAY_GU1M5XZmJehS5wOZcehZg2KIHs-A'
+    ) {
+      this.role = 0;
+    } else if (
+      localStorage.getItem('salt') ===
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJieWVieWUiOiJieWVieWUifQ.EO2FQLVSrgS74bZHch0kxu-HzUK56osW8BdT7WShyoU'
+    ) {
+      this.role = 2;
+    }
 
-    if(localStorage.getItem("token")){
-      this.isLogin=true;
+    if (localStorage.getItem('token')) {
+      this.isLogin = true;
     }
 
     // this.auth.checktoken(true);
     // this.isLogin=this.token.isLogin;
-    this.auth.changeLogin.subscribe(
-      res=>{
-        this.isLogin = res;
-      }
-    )
+    this.auth.changeLogin.subscribe((res) => {
+      this.isLogin = res;
+    });
     console.log(this.auth.isLogin);
   }
-  destorySession(){
+  destorySession() {
     //this.isLogin=true
     this.auth.checktoken(false);
     this.router.navigateByUrl('/home');
     // this.isLogin=false;
-
   }
 }
-
-

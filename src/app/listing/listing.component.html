@@ -12,62 +12,88 @@
   <div class="row mt-5">
     <div class="col">
       <div class="form-search-wrap p-2" data-aos="fade-up" data-aos-delay="200">
-        <form method="post" #search="ngForm" (ngSubmit)="onSearch(search.value)">
-          <div class="row  d-flex align-items-end">
+        <form
+          method="post"
+          #search="ngForm"
+          (ngSubmit)="onSearch(search.value)"
+        >
+          <div class="row d-flex align-items-end">
             <div class="col-lg-3 col-xl-3 no-sm-border border-right">
               <label class="text-danger">Choose Gender</label>
 
               <select class="form-control" ngModel name="gender" id="">
-                <option value="">Choose Gender </option>
-                <option value="male">Male </option>
-                <option value="female">Female </option>
+                <option value="">Choose Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
               </select>
             </div>
             <div class="col-lg-2 col-xl-2 no-sm-border border-right">
               <label class="text-danger">Choose Price</label>
 
-              <select class="form-control" ngModel name="min_price" (change)="showVal($event)" id="">
-
+              <select
+                class="form-control"
+                ngModel
+                name="min_price"
+                (change)="showVal($event)"
+                id=""
+              >
                 <option value="500">500-1000</option>
                 <option value="1000">1000-2000</option>
                 <option value="2000">2000-4000</option>
-
               </select>
             </div>
             <div class="col-lg-2 col-xl-2 no-sm-border border-right">
               <label class="text-danger">Choose Governorate</label>
 
               <div class="wrap-icon">
-                <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
-                <select class="form-control" #governate=ngModel name="governate" ngModel  (change)="choosegov($event)" id="">
-
+                <span class="icon"
+                  ><span class="icon-keyboard_arrow_down"></span
+                ></span>
+                <select
+                  class="form-control"
+                  #governate="ngModel"
+                  name="governate"
+                  ngModel
+                  (change)="choosegov($event)"
+                  id=""
+                >
                   <option *ngFor="let city of gov" [value]="city.governorate">
-                    {{city.governorate}}
+                    {{ city.governorate }}
                   </option>
-
-
                 </select>
               </div>
-
             </div>
             <div class="col-lg-2 col-xl-2 no-sm-border border-right">
               <label class="text-danger">Choose Areas</label>
 
               <div class="wrap-icon">
-                <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
-                <select class="form-control" [required]="governate.dirty"  ngModel *ngIf="test" name="state" id="">
+                <span class="icon"
+                  ><span class="icon-keyboard_arrow_down"></span
+                ></span>
+                <select
+                  class="form-control"
+                  [required]="governate.dirty"
+                  ngModel
+                  *ngIf="test"
+                  name="state"
+                  id=""
+                >
                   <option value=""></option>
                   <option *ngFor="let city of cities" [value]="city.name">
-                    {{city.name}}
+                    {{ city.name }}
                   </option>
-
                 </select>
               </div>
             </div>
-            <div class="col-lg-2 col-xl-2 ">
-              <button type="submit" [disabled]="search.invalid"  class="btn text-white btn-danger">Search</button>
+            <div class="col-lg-2 col-xl-2">
+              <button
+                type="submit"
+                [disabled]="search.invalid"
+                class="btn text-white btn-danger"
+              >
+                Search
+              </button>
             </div>
-
           </div>
         </form>
       </div>
@@ -78,63 +104,36 @@
   <div class="container-fluid">
     <div class="row justify-content-center mb-5">
       <div class="col-md-7 text-center border-primary">
-        <h2 class="font-weight-light text-primary">All Apartment Realated to this Area</h2>
-        <p class="color-black-opacity-5">All Apartment Realated to this Area.</p>
+        <h2 class="font-weight-light text-primary">
+          All Apartment Realated to this Area
+        </h2>
+        <p class="color-black-opacity-5">
+          All Apartment Realated to this Area.
+        </p>
       </div>
     </div>
     <div class="row mt-5">
-
-      <div class="col-md-6 mb-4 mb-lg-4 col-lg-4 " *ngFor="let apart of apart">
-
-        <div class="card" style="width:450px" >
-          <img class="card-img-top" [src]='url+apart.link'   alt="Card image" style="width:100%">
+      <div class="col-md-6 mb-4 mb-lg-4 col-lg-4" *ngFor="let apart of apart">
+        <div class="card" style="width: 450px">
+          <img
+            class="card-img-top"
+            [src]="url + apart.link"
+            alt="Card image"
+            style="width: 100%"
+          />
           <div class="card-body">
-            <h4 class="card-title"> {{ apart.nearby }} </h4>
+            <h4 class="card-title">{{ apart.nearby }}</h4>
             <p class="card-text">Price : {{ apart.price }}</p>
-            <p class="card-text">Address : {{ apart.address }} </p>
-            <p class="card-text ">Max Persons : {{ apart.max }}
-              <!-- <span class="icon icon-user p-1"></span>
-              <span class="icon icon-user p-1"></span>
-              <span class="icon icon-user p-1"></span>
-              <span class="icon icon-user p-1"></span>
-              <span class="icon icon-user p-1"></span>
-              <span class="icon icon-user p-1"></span> -->
+            <p class="card-text">Address : {{ apart.address }}</p>
+            <p class="card-text">Max Persons : {{ apart.max }}</p>
+            <p class="card-text">Gender : {{ apart.gender }}</p>
 
-            </p>
-            <p class="card-text">Gender : {{ apart.gender }} </p>
-
-            <a [routerLink]='["apart-details",apart.id]' class="btn btn-danger">Show</a>
+            <a [routerLink]="['apart-details', apart.id]" class="btn btn-danger"
+              >Show</a
+            >
           </div>
         </div>
-
       </div>
     </div>
-    <!-- <div class="row mt-5">
-
-      <div class="col-md-6 mb-4 mb-lg-4 col-lg-4 ">
-
-        <div class="card" style="width:450px">
-          <img class="card-img-top" src="../../assets/images/apart_3.jpeg" alt="Card image" style="width:100%">
-          <div class="card-body">
-            <h4 class="card-title">owner : hamada </h4>
-            <p class="card-text">Price : 500$</p>
-            <p class="card-text">Address : 94 Abdul-Elgoad St,Dirout,Assuit,Egypt </p>
-            <p class="card-text ">Max Persons :
-              <span class="icon icon-user p-1"></span>
-              <span class="icon icon-user p-1"></span>
-              <span class="icon icon-user p-1"></span>
-              <span class="icon icon-user p-1"></span>
-              <span class="icon icon-user p-1"></span>
-              <span class="icon icon-user p-1"></span>
-
-            </p>
-            <p class="card-text">Gender : Male </p>
-
-            <a routerLink="apart-details" class="btn btn-danger">Show</a>
-          </div>
-        </div>
-
-      </div>
-    </div> -->
   </div>
 </div>
