@@ -56,6 +56,27 @@ export class AddCityComponent implements OnInit {
   }
 
 
+  deleteCity(id: number) {
+    this.http
+      .delete('http://127.0.0.1:8000/api/cities/' + id, {
+        headers: new HttpHeaders().append(
+          'Authorization',
+          'Bearer ' + localStorage.getItem('token')
+        ),
+      })
+      .subscribe(
+        (data) => {
+          console.log(data);
+        },
+        (err) => {
+          for (const e in err.error.errors) {
+            this.error += err.error.errors[e];
+          }
+        }
+      );
+    //this.router.navigateByUrl('/admin-panal/statics');
+  }
+
 
 
 

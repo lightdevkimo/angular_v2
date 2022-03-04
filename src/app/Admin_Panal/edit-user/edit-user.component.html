@@ -12,16 +12,16 @@
       <div class="col-md-6 mb-5">
 
         <form class="p-5 bg-white" #save="ngForm" (ngSubmit)="onsave(save)" *ngIf="!isLoading">
-          <h3 class="text-center text-danger">Edit User </h3>
+          <h3 class="text-center text-danger">Change Account Type</h3>
 
           <div class="alert alert-danger" *ngIf="error">
             {{ error }}
           </div>
           <!-- first name and last name -->
-          <div class="row form-group">
+          <!-- <div class="row form-group">
             <div class="col-md-12 mb-3 mb-md-0">
               <label class="text-black" for="name"> Name</label>
-              <input type="text" id="name" class="form-control" ngModel name="name" required
+              <input type="text" id="name" class="form-control" ngModel name="name"
                 pattern="^[a-zA-Z_][a-zA-Z0-9_]*$" minlength="3" #name="ngModel"
                 [ngClass]="{ 'alert-danger': name.invalid && name.touched }" value="{{ user.name }}" />
               <div>
@@ -36,13 +36,13 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
           <!-- email -->
 
-          <div class="row form-group">
+          <!-- <div class="row form-group">
             <div class="col-md-12">
               <label class="text-black" for="email">Email</label>
-              <input type="email" id="email" class="form-control" ngModel name="email" value="{{ user.email }}" required email #email="ngModel"
+              <input type="email" id="email" class="form-control" ngModel name="email" value="{{ user.email }}"  email #email="ngModel"
                 [ngClass]="{ 'alert-danger': email.invalid && email.touched }" />
               <div>
                 <div class="text-danger small" *ngIf="email.errors?.required && email.touched">
@@ -53,11 +53,10 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
 
 
-          <div class="row form-group">
-            <!-- gender -->
+          <!-- <div class="row form-group">
             <div class="col-md-12">
               <div class="form-group">
                 <label class="text-black">Gender</label>
@@ -65,11 +64,11 @@
                     'alert-danger':  save.submitted
                   }" class="radio d-flex justify-content-around">
                   <label>
-                    <input required type="radio" name="gender"   value="male" ngModel #gender="ngModel" />
+                    <input  type="radio" name="gender" value="male" ngModel #gender="ngModel" />
                     Male
                   </label>
                   <label>
-                    <input required type="radio" name="gender" value="femail" ngModel #gender="ngModel" />
+                    <input  type="radio" name="gender" value="female" ngModel #gender="ngModel" />
                     Female
                   </label>
                 </div>
@@ -80,27 +79,33 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
+
           <div class="row form-group">
             <!-- role Type -->
             <div class="col-md-12">
               <div class="form-group">
                 <label class="text-black">Account Type</label>
                 <div [ngClass]="{
-                    'alert-danger':   save.submitted
+                    'alert-danger':   save.submitted  && gender.invalid
                   }" class="radio d-flex justify-content-around">
                   <label>
-                    <input required type="radio" name="role" value="1" ngModel #gender="ngModel" />
+                    <input required type="radio" name="role" value="2" ngModel #gender="ngModel" />
                     Owner
                   </label>
                   <label>
-                    <input required type="radio" name="role" value="2" ngModel #gender="ngModel" />
+                    <input required type="radio" name="role" value="1" ngModel #gender="ngModel" />
                     Renter
+                  </label>
+
+                  <label>
+                    <input required  type="radio" name="role" value="0" ngModel #gender="ngModel" />
+                    Admin
                   </label>
                 </div>
               </div>
               <div>
-                <div class="text-danger small" *ngIf="!save.submitted">
+                <div class="text-danger small" *ngIf="save.submitted && gender.invalid">
                   - role Type is required.
                 </div>
               </div>
@@ -110,7 +115,7 @@
 
           <!-- Edit -->
           <div class="row form-group align-items-center justify-content-between">
-            <div class="col-md-6">
+            <div class="col-md-12 text-center">
               <button type="submit" class="btn btn-primary btn-lg text-white" [disabled]="!save.valid" >
                 Update
               </button>

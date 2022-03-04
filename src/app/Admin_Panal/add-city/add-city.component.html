@@ -65,10 +65,17 @@
                   <div class="row form-group">
                     <div class="col-md-12">
                       <label class="text-black" for="governorate">Governorate</label>
-                      <input type="text" id="governorate" class="form-control" ngModel name="governorate" required
+                      <input type="text" id="governorate" class="form-control" ngModel name="governorate" list="list_gov" required
                         #governorate="ngModel" [ngClass]="{
                                 'alert-danger': governorate.invalid && governorate.touched
                               }" />
+                              <datalist id="list_gov">
+                                <option value="Alexandria">Alexandria</option>
+                                <option value="Aswan">Aswan</option>
+                                <option value="Asyut">Asyut</option>
+                                <option value="Beheira">Beheira</option>
+                                <option value="Beni Suef">Beni Suef</option>
+                              </datalist>
                       <div>
                         <div class="text-danger small" *ngIf="governorate.errors?.required && governorate.touched">
                           - Your Governorate is required.
@@ -91,7 +98,7 @@
       </div>
     </div>
   </div>
-  <div class="modal fade" id="edit_city" aria-hidden="true" role="dialog">
+  <!-- <div class="modal fade" id="edit_city" aria-hidden="true" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -123,7 +130,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <div class="page-wrapper ">
     <div class="content container-fluid">
       <div class="page-header">
@@ -146,10 +153,8 @@
                     <tr>
                       <th class="text-center text-danger">City ID</th>
                       <th class="text-center text-danger">City Name</th>
-                      <th class="text-center text-danger">Governorate</th>
                       <th class="text-center text-danger">Created At</th>
                       <th class="text-center text-danger">Delete</th>
-                      <th class="text-center text-danger">Edit</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -158,19 +163,11 @@
                         <div>{{ city.id }}</div>
                       </td>
                       <td class="text-nowrap text-center">{{ city.name }}</td>
-                      <td class="text-nowrap text-center">{{ city.governorate }}</td>
                       <td class="text-nowrap text-center">{{ city.created_at | date: "medium"}}</td>
                       <td>
-                        <div class="actions">
-                          <a href="#" class="btn rounded bg-dark text-white mr-2">
-                            <i class="fas fa-trash-alt"></i>Delete
-                          </a>
+                        <div class="actions text-center">
+                          <a  (click)="deleteCity(city.id)" class="btn rounded bg-dark text-white mr-2"><i class="fas fa-trash-alt"></i>Delete</a>
                         </div>
-                      </td>
-                      <td>
-                        <a class="btn btn-danger rounded" data-toggle="modal" href="#edit_city">
-                          <i class="fa fa-edit mr-1"></i>Edit
-                        </a>
                       </td>
                     </tr>
                   </tbody>
