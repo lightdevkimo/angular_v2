@@ -37,13 +37,6 @@
             <span class="menu-arrow"></span
           ></a>
         </li>
-        <li class="list-divider"></li>
-        <li class="submenu">
-          <a (click)="destorySession()"
-            ><i class="fas fa-sign-out-alt"></i> <span> Sign out </span>
-            <span class="menu-arrow"></span
-          ></a>
-        </li>
       </ul>
     </ng-container>
   </app-aside>
@@ -176,7 +169,7 @@
                 <div class="alert alert-danger" *ngIf="error">
                   {{ error }}
                 </div>
-                
+
                 <table id="datatableexample"
                   datatable
                   class=" row-border hover table table-stripped table table-hover table-center mb-0"
@@ -196,7 +189,7 @@
                   </thead>
                   <tbody >
                     <tr *ngFor="let user of users">
-                      <td>1</td>
+                      <td>{{ user.id }}</td>
                       <td>
                         <h2 class="table-avatar">
                           <a href="users/profile" class="avatar avatar-sm mr-2"
