@@ -43,6 +43,7 @@
               </li>
 
               <li
+                *ngIf="role !== 0"
                 [ngClass]="{ active: current == 'contact' }"
                 (click)="changeActive('contact')"
               >
@@ -65,7 +66,8 @@
                   aria-expanded="false"
                 >
                   <img
-                    src="../../../assets/images/PersonalImage.png"
+                  [src]="user_info.gender == 'male'?'../../assets/assets_admin/img/male.png':'../../assets/assets_admin/img/female.jpg'"
+
                     alt="mdo"
                     width="32"
                     height="32"

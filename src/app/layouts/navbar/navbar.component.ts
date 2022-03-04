@@ -1,3 +1,4 @@
+import { user_info } from './../../_models/user.model';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/_services/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -9,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   constructor(private auth: AuthService, private router: Router) {}
-
+  user_info: user_info;
   isLogin = false;
   current = '';
   role: number;
@@ -18,6 +19,7 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.user_info = JSON.parse(localStorage.getItem('user_info'));
     //user
     if (
       localStorage.getItem('salt') ===

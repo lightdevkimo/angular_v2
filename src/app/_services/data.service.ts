@@ -9,9 +9,7 @@ export class DataService {
 
   constructor(private http:HttpClient) { }
 
-  Sent(postData: contact) {
-    return this.http.post('http://127.0.0.1:8000/api/contact-us', postData)
-  }
+  
 
 
 

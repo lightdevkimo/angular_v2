@@ -74,9 +74,9 @@
           </div>
 
           <div class="card-body">
-            <!-- <h5 class="card-title">
-              owner : <span class="text-danger"> </span>
-            </h5> -->
+            <h5 class="card-title text-center">
+              <span class="alert-danger alert" *ngIf="errorReserve">{{ errorReserve }} </span>
+            </h5>
             <h5 class="card-text">
               Price :<span class="text-primary">{{ apart.price }}</span>
             </h5>
@@ -88,12 +88,6 @@
             </h5>
             <h5 class="card-text">
               Max Persons :{{ apart.max }}
-              <!-- <span class="text-success icon icon-user p-1"></span>
-              <span class="text-success icon icon-user p-1"></span>
-              <span class="text-success icon icon-user p-1"></span>
-              <span class="text-success icon icon-user p-1"></span>
-              <span class="icon icon-user p-1"></span>
-              <span class="icon icon-user p-1"></span> -->
             </h5>
             <h5 class="card-text">
               Near by :
@@ -105,11 +99,31 @@
             <h5 class="card-text mb-5">
               Gender :<span class="text-danger"> {{ apart.gender }}</span>
             </h5>
-            <a
-              routerLink="apart-details"
-              class="d-grid gap-2 col-6 mx-auto btn btn-danger"
-              >reserve</a
-            >
+
+            <div class="row text-center">
+              <div class="col-12">
+                <a (click)="Reserve()" *ngIf="role==1"  class="d-grid gap-2 col-6 mx-auto btn btn-danger">
+                  Reserve
+                </a>
+              </div>
+              <div class="col-6" *ngIf="!apart.approved" >
+                <a (click)="Approve()" *ngIf="role==0" class="d-grid gap-2 col-6 mx-auto btn btn-danger">
+                  Approve
+                </a>
+              </div>
+              <div class="col-6" *ngIf="!apart.approved">
+                <a (click)="Reject()" *ngIf="role==0" class="d-grid gap-2 col-6 mx-auto btn btn-danger">
+                  Reject
+                </a>
+              </div>
+              <div class="col-12" *ngIf="apart.approved">
+                <a (click)="Reject()" *ngIf="role==0" class="d-grid gap-2 col-6 mx-auto btn btn-danger">
+                  Delete
+                </a>
+              </div>
+            </div>
+
+
           </div>
         </div>
       </div>

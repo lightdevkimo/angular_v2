@@ -35,14 +35,7 @@ export class UsersComponent implements OnInit, OnDestroy {
       .subscribe((data) => {
         for (let i = 0; i < data['data'].length; i++) {
           this.users[i] = data['data'][i];
-          if (this.users[i]['role'] === 0) {
-            this.users[i]['role'] = 'admin';
-          } else if (this.users[i]['role'] === 1) {
-            this.users[i]['role'] = 'user';
-          } else this.users[i]['role'] === 2;
-          {
-            this.users[i]['role'] = 'owner';
-          }
+          
         }
 
         setTimeout(() => {
@@ -82,6 +75,7 @@ export class UsersComponent implements OnInit, OnDestroy {
           }
         }
       );
-    this.Users();
+    this.router.navigateByUrl('/admin-panal/statics');
+
   }
 }

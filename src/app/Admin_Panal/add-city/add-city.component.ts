@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,10 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddCityComponent implements OnInit {
   cities: [];
-  constructor(private http: HttpClient) {}
+  error:string=''
+  constructor(private http: HttpClient, private router:Router) {}
 
   ngOnInit(): void {
     this.Cities();
+  }
+
+  AddCity(data:any) {
+    this.http.post('http://127.0.0.1:8000/api/cities',data
+    ,{headers: new HttpHeaders().append('Authorization','Bearer '+localStorage.getItem('token'))})
+      .subscribe(
+        (data) => {
+          this.router.navigateByUrl('/admin-panal/statics')
+          this.router.navigateByUrl('/admin-panal/add/City')
+
+        },
+        (err) => {
+          for (const e in err.error.errors) {
+            this.error += err.error.errors[e];
+          }
+        }
+      );
   }
 
   Cities() {
@@ -34,6 +53,31 @@ export class AddCityComponent implements OnInit {
           });
         }, 1);
       });
-
   }
+
+
+  deleteCity(id: number) {
+    this.http
+      .delete('http://127.0.0.1:8000/api/cities/' + id, {
+        headers: new HttpHeaders().append(
+          'Authorization',
+          'Bearer ' + localStorage.getItem('token')
+        ),
+      })
+      .subscribe(
+        (data) => {
+          console.log(data);
+        },
+        (err) => {
+          for (const e in err.error.errors) {
+            this.error += err.error.errors[e];
+          }
+        }
+      );
+    //this.router.navigateByUrl('/admin-panal/statics');
+  }
+
+
+
+
 }

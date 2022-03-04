@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { user_info } from 'src/app/_models/user.model';
 
@@ -12,7 +12,8 @@ export class EditUserComponent implements OnInit {
   id:number;
   user: user_info[] = []
 
-  constructor(private activeRouter: ActivatedRoute, private http: HttpClient) { }
+
+    constructor(private activeRouter: ActivatedRoute, private http: HttpClient, private router: Router) { }
   isLoading = false;
 
   error:string=null
@@ -29,10 +30,10 @@ export class EditUserComponent implements OnInit {
   }
 
   onsave(data: any){
-    console.log(data.value)
     this.http.put('http://127.0.0.1:8000/api/user/' + this.id,data.value, { headers: new HttpHeaders().append('Authorization', 'Bearer ' + localStorage.getItem('token')) }).subscribe(data => {
 
-      console.log(data)
+      this.router.navigateByUrl('/admin-panal/statics');
+
 
     });
 

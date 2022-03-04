@@ -19,10 +19,8 @@ export class ContactComponent implements OnInit {
   }
 
   Sent(postData: contact) {
-    this.data.Sent(postData).subscribe(data=>{
-
+    this.http.post('http://127.0.0.1:8000/api/contact-us', postData).subscribe(data=>{
       this.router.navigateByUrl('/home');
-
     },error=>{
       console.log(error);
       for (const e in error.error.errors) {

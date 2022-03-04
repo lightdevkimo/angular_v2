@@ -1,7 +1,7 @@
 import { apart } from 'src/app/_models/user.model';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-apartment-details',
@@ -12,22 +12,90 @@ export class ApartmentDetailsComponent implements OnInit {
 
   url = "http://127.0.0.1:8000/storage/images/"
   apart: apart
-  
+  role: number;
   id: string
   peopleComments=[]
   peopleNames=[]
   rentApart :any
   personName=""
-  constructor(private activeRouter: ActivatedRoute, private http: HttpClient) { }
+  errorReserve:string=""
+  constructor(private activeRouter: ActivatedRoute, private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
-    // console.log(this.activeRouter.snapshot.params)
+    if (
+      localStorage.getItem('salt') ===
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJoZWxsbyI6ImhlbGxvIn0.mzFAbbzRu-Oada93Er2zZj2eDdTcDpe1vLeRLAGCCPc'
+    ) {
+      this.role = 1;
+    } else if (
+      localStorage.getItem('salt') ===
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJoYWJsbGxsIjoiaGhoaGgifQ.YW5xOWv0c2kyAY_GU1M5XZmJehS5wOZcehZg2KIHs-A'
+    ) {
+      this.role = 0;
+    } else if (
+      localStorage.getItem('salt') ===
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJieWVieWUiOiJieWVieWUifQ.EO2FQLVSrgS74bZHch0kxu-HzUK56osW8BdT7WShyoU'
+    ) {
+      this.role = 2;
+    }
     this.id = this.activeRouter.snapshot.params['id']
-    console.log(this.id)
-
     this.showApart()
     this.showComments()
+
   }
+
+  Reserve(){
+      this.http
+        .post(
+          'http://127.0.0.1:8000/api/rent/',
+          {
+            'apartment_id':this.id,
+            'user_id':JSON.parse(localStorage.getItem('user_info'))['id']
+          },{ headers: new HttpHeaders().append('Authorization','Bearer '+localStorage.getItem('token'))}
+        )
+        .subscribe((res) => {
+          this.router.navigateByUrl('/profile');
+
+        },
+        (err) => {
+          for (const e in err.error.errors) {
+            this.errorReserve += err.error.errors[e];
+          }
+        });
+  }
+
+  Approve(){
+    console.log(localStorage.getItem('token'));
+    this.http
+      .post('http://127.0.0.1:8000/api/apartements/approve/'+this.id,{},
+        {headers: new HttpHeaders().append('Authorization','Bearer '+localStorage.getItem('token'))})
+      .subscribe(
+        (data) => {
+          console.log(data);
+        }
+        ,(err) => {
+          console.log(err);
+
+        }
+        );
+  }
+
+  Reject(){
+    console.log('http://127.0.0.1:8000/api/apartements/reject/'+this.id);
+    this.http
+      .post('http://127.0.0.1:8000/api/apartements/reject/'+this.id,{},
+        {headers: new HttpHeaders().append('Authorization','Bearer '+localStorage.getItem('token'))})
+      .subscribe(
+        (data) => {
+          console.log(data);
+        }
+        ,(err) => {
+          console.log(err);
+
+        }
+        );
+  }
+
 
   showApart() {
     this.http.get('http://127.0.0.1:8000/api/apartements/' + this.id).subscribe(data => {
@@ -66,24 +134,24 @@ export class ApartmentDetailsComponent implements OnInit {
         // console.log(data);
         // alert(res['data'])
         // location.reload()
-        
+
         for (let i = 0; i < data['data'].length; i++) {
           this.rentApart = data['data'][i]
           this.peopleComments[i] = (this.rentApart);
           this.getUserInfo(this.rentApart['user_id'])
-          
+
         }
-  
+
       },
       err=>{
         console.log(err);
         // alert(err['error'])
         // location.reload()
 
-        
+
       }
     )
-    
+
   }
 
 
