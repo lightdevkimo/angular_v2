@@ -9,7 +9,11 @@
                 <div class="col-auto profile-image">
                   <a href="#">
                     <img class="rounded-circle" alt="User Image"
-                      src="../../assets/assets_admin/img/profiles/avatar-02.jpg" />
+                      [src]="user_info.gender == 'male'?'../../assets/assets_admin/img/male.png':'../../assets/assets_admin/img/female.jpg'"
+
+                      />
+
+
                   </a>
                 </div>
                 <div class="col ml-md-n2 profile-user-info">
@@ -150,24 +154,15 @@
                         let i = index
                       ">
                       <div class="card" style="width: 450px">
-                        <!-- *ngIf="rentApartments[i]?.status === 'requested'" -->
-                        <!-- {{rentApartments[i].status}} -->
                         <img class="card-img-top" [src]="url + apartmentsDetailsReq[i]['link']" alt="Card image"
                           style="width: 100%" />
                         <div class="card-body">
-                          <!-- <h5 class="card-title">owner : hamada</h5> -->
                           <h5 class="card-text">{{ apartment.price }}</h5>
                           <h5 class="card-text">
                             Address : {{ apartment.address }}
                           </h5>
                           <h5 class="card-text">
                             Max Persons : {{ apartment.max }}
-                            <!--  <span class="text-success icon icon-user p-1"></span>
-                            <span class="icon icon-user p-1"></span>
-                            <span class="icon icon-user p-1"></span>
-                            <span class="icon icon-user p-1"></span>
-                            <span class="icon icon-user p-1"></span>
-                            <span class="icon icon-user p-1"></span> -->
                           </h5>
                           <h5 class="card-text">
                             Available Places : {{ apartment.available }}
@@ -202,12 +197,9 @@
                         let i = index
                       ">
                       <div class="card">
-                        <!-- *ngIf="rentApartments[i]?.status === 'confirmed'" -->
-                        <!-- {{rentApartments[i].status}} -->
                         <img class="card-img-top" [src]="url + apartmentsDetailsConf[i]['link']" alt="Card image"
                           style="width: 100%" />
                         <div class="card-body">
-                          <!-- <h5 class="card-title">owner : hamada</h5> -->
                           <h5 class="card-text">
                             Price: {{ apartment.price }}
                           </h5>
@@ -216,12 +208,6 @@
                           </h5>
                           <h5 class="card-text">
                             Max Persons : {{ apartment.max }}
-                            <!--  <span class="text-success icon icon-user p-1"></span>
-                            <span class="icon icon-user p-1"></span>
-                            <span class="icon icon-user p-1"></span>
-                            <span class="icon icon-user p-1"></span>
-                            <span class="icon icon-user p-1"></span>
-                            <span class="icon icon-user p-1"></span> -->
                           </h5>
                           <h5 class="card-text">
                             Available Places : {{ apartment.available }}
@@ -231,11 +217,6 @@
                           </h5>
                         </div>
                         <div class="card-text">
-                          <!-- <div class="alert "
-                          [ngClass]="{'alert-danger' :updateStatus == 'failed'}"
-                          [ngClass]="{'alert-success':updateStatus == 'success'}" *ngIf="updateStatus">
-                            {{ updateMessage }}
-                          </div> -->
                           <label for="comment">Comment</label>
                         </div>
                         <div class="card-text" *ngIf="!editMode || currentCard != i">

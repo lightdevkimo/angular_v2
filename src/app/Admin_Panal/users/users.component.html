@@ -83,14 +83,7 @@
                       <td>{{ user.id }}</td>
                       <td>
                         <h2 class="table-avatar">
-                          <a href="users/profile" class="avatar avatar-sm mr-2"
-                            ><img
-                              class="avatar-img rounded-circle"
-                              src="../../assets/assets_admin/img/profiles/avatar-03.jpg"
-                              width="75px"
-                              alt="User Image"
-                          /></a>
-                          <a href="users/profile">{{ user.name }} </a>
+                          <a>{{ user.name }} </a>
                         </h2>
                       </td>
                       <td>{{ user.role==0?'Admin':user.role==1?'User':'Owner' }}</td>
