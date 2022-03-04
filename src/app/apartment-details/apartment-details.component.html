@@ -7,7 +7,7 @@
   <div class="container-fluid">
     <div class="row">
       <div
-        class="col-md-12 mb-4 mb-lg-4 col-lg-8 d-flex justify-content-center"
+        class="col-md-12  col-lg-8 d-flex justify-content-center"
       >
         <div class="card" style="width: 750px">
           <div
@@ -113,7 +113,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-12 mb-4 mb-lg-4 mt-5 col-lg-4">
+      <div class="col-md-12  mt-5 col-lg-4">
         <div class="card" style="width: 450px">
           <div class="card-body">
             <h4 class="card-title text-center">Description</h4>
@@ -126,7 +126,7 @@
     </div>
   </div>
 </div>
-<!-- <div class="site-section">
+<div class="site-section">
   <div class="container">
     <div class="row">
       <div class="col-md-8 d-flex justify-content-center">
@@ -135,39 +135,18 @@
             <div class="card-body">
               <h2 class="text-danger text-center mb-5">People Comments</h2>
               <ul class="comment-list">
-                <li class="comment">
+                <li class="comment" *ngFor="let comment of peopleComments;let i=index;">
                   <div class="vcard bio">
-                    <img
+                    <!-- <img
                       src="../../assets/images/comment_vcard.jpg"
                       alt="Free Website Template by Free-Template.co"
-                    />
+                    /> -->
                   </div>
                   <div class="comment-body">
-                    <h3>Jean Doe</h3>
-                    <div class="meta">January 9, 2018 at 2:21pm</div>
+                    <h3>{{peopleNames[i]}}</h3>
+                    <div class="meta">{{comment.updated_at|date:'medium'}}</div>
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Pariatur quidem laborum necessitatibus, ipsam impedit
-                      vitae autem, eum officia, fugiat saepe enim sapiente iste
-                      iure! Quam voluptas earum impedit necessitatibus, nihil?
-                    </p>
-                  </div>
-                </li>
-                <li class="comment">
-                  <div class="vcard bio">
-                    <img
-                      src="../../assets/images/comment_vcard.jpg"
-                      alt="Free Website Template by Free-Template.co"
-                    />
-                  </div>
-                  <div class="comment-body">
-                    <h3>Jean Doe</h3>
-                    <div class="meta">January 9, 2018 at 2:21pm</div>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Pariatur quidem laborum necessitatibus, ipsam impedit
-                      vitae autem, eum officia, fugiat saepe enim sapiente iste
-                      iure! Quam voluptas earum impedit necessitatibus, nihil?
+                      {{comment.comments}}
                     </p>
                   </div>
                 </li>
@@ -179,4 +158,4 @@
       </div>
     </div>
   </div>
-</div> -->
+</div>

@@ -1,3 +1,4 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,12 +7,36 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./messages.component.scss']
 })
 export class MessagesComponent implements OnInit {
+  messages: [] = [];
 
-  constructor() { }
-  isLogin=true
+  constructor(private http: HttpClient) { }
+
   ngOnInit(): void {
+    this.ContactUs();
   }
-  destorySession(){
-    this.isLogin=false
+
+
+  ContactUs() {
+    this.http
+      .get('http://127.0.0.1:8000/api/contact-us', {
+        headers: new HttpHeaders().append(
+          'Authorization',
+          'Bearer ' + localStorage.getItem('token')
+        ),
+      })
+      .subscribe((data) => {
+        this.messages = data['data'];
+        console.log(this.messages);
+
+        setTimeout(() => {
+          $('#datatablecontactus').DataTable({
+            pagingType: 'full_numbers',
+            pageLength: 10,
+            processing: true,
+            lengthMenu: [10, 20, 50],
+          });
+        }, 1);
+      });
   }
+  
 }
