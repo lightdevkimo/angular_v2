@@ -71,7 +71,7 @@ export class ApartmentDetailsComponent implements OnInit {
         {headers: new HttpHeaders().append('Authorization','Bearer '+localStorage.getItem('token'))})
       .subscribe(
         (data) => {
-          console.log(data);
+          this.router.navigateByUrl('/admin-panal/apartments');
         }
         ,(err) => {
           console.log(err);
@@ -87,10 +87,9 @@ export class ApartmentDetailsComponent implements OnInit {
         {headers: new HttpHeaders().append('Authorization','Bearer '+localStorage.getItem('token'))})
       .subscribe(
         (data) => {
-          console.log(data);
+          this.router.navigateByUrl('/admin-panal/apartments');
         }
         ,(err) => {
-          console.log(err);
 
         }
         );
@@ -100,13 +99,8 @@ export class ApartmentDetailsComponent implements OnInit {
   showApart() {
     this.http.get('http://127.0.0.1:8000/api/apartements/' + this.id).subscribe(data => {
 
-      //for (let i = 0; i < data['data'].length; i++) {
-      // this.apart[i] = (data['data'][i]);
-      // console.log(data);
       this.apart = data['data'];
-      // console.log(this.apart);
 
-      // }
     });
 
   }
@@ -114,10 +108,8 @@ export class ApartmentDetailsComponent implements OnInit {
   getUserInfo(userId:number):any{
     this.http.get('http://127.0.0.1:8000/api/user/'+userId).subscribe(
       data=>{
-        // console.log(data['data']['name']);
         this.personName =  data['data']['name']
         this.peopleNames.push(this.personName)
-        // console.log(this.personName);
 
       }
     )
@@ -131,9 +123,6 @@ export class ApartmentDetailsComponent implements OnInit {
           )
     }).subscribe(
       data=>{
-        // console.log(data);
-        // alert(res['data'])
-        // location.reload()
 
         for (let i = 0; i < data['data'].length; i++) {
           this.rentApart = data['data'][i]
@@ -145,8 +134,6 @@ export class ApartmentDetailsComponent implements OnInit {
       },
       err=>{
         console.log(err);
-        // alert(err['error'])
-        // location.reload()
 
 
       }
