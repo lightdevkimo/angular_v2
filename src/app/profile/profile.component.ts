@@ -47,11 +47,11 @@ export class ProfileComponent implements OnInit {
 
   ConfirmRequest(index:number) {
     this.http
-      .put('http://127.0.0.1:8000/api/rent/'+this.OwnerApartmentRequests[index]['id'], {headers: new HttpHeaders().append('Authorization','Bearer '+localStorage.getItem('token'))})
+      .put('http://127.0.0.1:8000/api/rent/'+this.OwnerApartmentRequests[index]['id'],{}, {headers: new HttpHeaders().append('Authorization','Bearer '+localStorage.getItem('token'))})
 
       .subscribe(
         (data) => {
-          console.log(data);
+          this.router.navigateByUrl('/home');
         }
         ,(err) => {
           console.log(err);
@@ -67,14 +67,12 @@ export class ProfileComponent implements OnInit {
         'http://127.0.0.1:8000/api/rent/' + this.OwnerApartmentRequests[index]['id'],{ headers: new HttpHeaders().append('Authorization','Bearer '+localStorage.getItem('token'))}
       )
       .subscribe((data) => {
-        console.log(data);
+        this.router.navigateByUrl('/home');
       },(err) => {
           console.log(err);
 
         }
         );
-
-    //this.router.navigateByUrl('/find');
   }
 
 
