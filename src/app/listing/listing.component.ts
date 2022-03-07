@@ -24,7 +24,7 @@ export class ListingComponent implements OnInit {
   apart: apart[] = [];
   test = true;
   url="http://127.0.0.1:8000/storage/images/"
-
+  error=""
 
   getcities() {
     this.http.get('http://127.0.0.1:8000/api/governates').subscribe(data => {
@@ -74,11 +74,16 @@ export class ListingComponent implements OnInit {
 
     this.http.get('http://127.0.0.1:8000/api/apartement/search', { params: params })
       .subscribe((result) => {
+        this.error = ""
         this.apart=[];
         for (let i = 0; i < result['data'].length; i++) {
           this.apart[i] = (result['data'][i]);
         }
 
+      },
+      (err) => {
+        this.apart=[];
+        this.error = err.error.error
       })
     console.log(this.apart);
   }
