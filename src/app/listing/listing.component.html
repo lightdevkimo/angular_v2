@@ -107,9 +107,9 @@
         <h2 class="font-weight-light text-primary">
           All Apartment Realated to this Area
         </h2>
-        <p class="color-black-opacity-5">
-          All Apartment Realated to this Area.
-        </p>
+        <div class="alert alert-danger" *ngIf="error">
+          {{ error }}
+        </div>
       </div>
     </div>
     <div class="row mt-5">
