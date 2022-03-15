@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  error: string = '';
+  error=[];
 
   constructor(private http: HttpClient, private auth: AuthService, private router: Router) { }
 
@@ -31,10 +31,10 @@ export class LoginComponent implements OnInit {
       setTimeout(()=>{
         location.reload();
       },1)
-    }, error => {
-
-      for (const e in error.error.errors) {
-        this.error += error.error.errors[e];
+    }, err => {
+      this.error =[]
+      for (const e in err.error.errors) {
+        this.error.push( err.error.errors[e]);
       }
 
     });
