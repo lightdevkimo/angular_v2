@@ -17,7 +17,9 @@
         style="margin-top: -150px"
       >
         <h3 class="text-danger text-center">Please Fill This Form</h3>
-
+        <ul class="alert alert-danger" *ngIf="error.length>0">
+          <li *ngFor="let err of error">{{err}}</li>
+        </ul>
         <div class="row form-group">
           <!-- address -->
           <div class="col-md-12">
@@ -102,7 +104,7 @@
           <!-- available -->
           <div class="col-md-6">
             <div class="form-group">
-              <label class="text-black">Number of Accompanies</label>
+              <label class="text-black">Available</label>
               <input
                 required
                 class="form-control"
@@ -212,7 +214,7 @@
           </div>
 
           <div class="col-md-6">
-            <label class="text-danger">Choose Areas</label>
+            <label>Choose Areas</label>
 
             <div class="wrap-icon">
               <span class="icon"
@@ -367,22 +369,24 @@
             <label class="text-black">Apartment Images :</label>
 
             <input
-                required
-                class="form-control"
-                type="file"
-                name="ii"
-                ngModel
-                #images="ngModel"
-                accept="image/*"
-                id="formFileMultiple"
-                (change)="selectFiles($event)"
-                [ngClass]="{
-                  'alert-danger':
-                    images.invalid &&
-                    (images.touched || addApartmentForm.submitted)
-                }"
-              />
-            <label for="formFileMultiple" class="custom-label">Upload Images</label>
+              required
+              class="form-control"
+              type="file"
+              name="ii"
+              ngModel
+              #images="ngModel"
+              accept="image/*"
+              id="formFileMultiple"
+              (change)="selectFiles($event)"
+              [ngClass]="{
+                'alert-danger':
+                  images.invalid &&
+                  (images.touched || addApartmentForm.submitted)
+              }"
+            />
+            <label for="formFileMultiple" class="custom-label"
+              >Upload Images</label
+            >
           </div>
           <div>
             <div
