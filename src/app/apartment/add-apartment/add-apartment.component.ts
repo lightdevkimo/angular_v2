@@ -33,7 +33,7 @@ export class AddApartmentComponent implements OnInit {
   }
 
   getcities() {
-    this.http.get('http://127.0.0.1:8000/api/governates').subscribe((data) => {
+    this.http.get('https://saknweb.herokuapp.com/api/governates').subscribe((data) => {
       for (let i = 0; i < data['data'].length; i++) {
         this.gov[i] = data['data'][i];
       }
@@ -42,7 +42,7 @@ export class AddApartmentComponent implements OnInit {
 
   choosegov(event: any) {
     this.http
-      .get('http://127.0.0.1:8000/api/findcities/'.concat(event.target.value))
+      .get('https://saknweb.herokuapp.com/api/findcities/'.concat(event.target.value))
       .subscribe((data) => {
         for (let i = 0; i < data['data'].length; i++) {
           this.cities[i] = data['data'][i];
@@ -65,7 +65,7 @@ export class AddApartmentComponent implements OnInit {
     db.append('city_id', data['state']);
 
     this.http
-      .post('http://127.0.0.1:8000/api/apartements', db, {
+      .post('https://saknweb.herokuapp.com/api/apartements', db, {
         headers: new HttpHeaders().append(
           'Authorization',
           'Bearer ' + localStorage.getItem('token')
@@ -80,7 +80,7 @@ export class AddApartmentComponent implements OnInit {
           this.error=[]
           for (const e in err.error.errors) {
             // console.log(err.error.errors[e]);
-            
+
             this.error.push( err.error.errors[e]);
           }
         }

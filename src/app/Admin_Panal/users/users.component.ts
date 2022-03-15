@@ -26,7 +26,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   Users() {
     this.usersub = this.http
-      .get('http://127.0.0.1:8000/api/users', {
+      .get('https://saknweb.herokuapp.com/api/users', {
         headers: new HttpHeaders().append(
           'Authorization',
           'Bearer ' + localStorage.getItem('token')
@@ -35,7 +35,7 @@ export class UsersComponent implements OnInit, OnDestroy {
       .subscribe((data) => {
         for (let i = 0; i < data['data'].length; i++) {
           this.users[i] = data['data'][i];
-          
+
         }
 
         setTimeout(() => {
@@ -59,7 +59,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   onDelete(id: number) {
     this.http
-      .delete('http://127.0.0.1:8000/api/user/' + id, {
+      .delete('https://saknweb.herokuapp.com/api/user/' + id, {
         headers: new HttpHeaders().append(
           'Authorization',
           'Bearer ' + localStorage.getItem('token')

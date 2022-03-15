@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   }
   login(data) {
 
-    this.http.post('http://127.0.0.1:8000/api/login', data.value).subscribe(res => {
+    this.http.post('https://saknweb.herokuapp.com/api/login', data.value).subscribe(res => {
       console.log(res);
       localStorage.setItem("token", res['token']);
       localStorage.setItem("role", res['role']);

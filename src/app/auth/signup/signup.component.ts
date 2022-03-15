@@ -21,7 +21,7 @@ export class SignupComponent implements OnInit {
 
   ngOnInit(): void {}
   signup(data) {
-    this.http.post('http://127.0.0.1:8000/api/register', data).subscribe((res) => {
+    this.http.post('https://saknweb.herokuapp.com/api/register', data).subscribe((res) => {
         console.log(res);
         localStorage.setItem('token', res['token']);
         localStorage.setItem('role', res['role']);
@@ -34,7 +34,7 @@ export class SignupComponent implements OnInit {
         this.error = []
         for (const e in err.error.errors) {
           // console.log(err.error.errors[e]);
-          
+
           this.error.push( err.error.errors[e]);
         }
       }
