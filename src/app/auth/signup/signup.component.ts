@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class SignupComponent implements OnInit {
   isLoading = false;
   signupData: SignupData;
-  error: string = '';
+  error=[];
   constructor(
     private http: HttpClient,
     private auth: AuthService,
@@ -31,8 +31,11 @@ export class SignupComponent implements OnInit {
         this.router.navigateByUrl('/find');
       },
       (err) => {
+        this.error = []
         for (const e in err.error.errors) {
-          this.error += err.error.errors[e];
+          // console.log(err.error.errors[e]);
+          
+          this.error.push( err.error.errors[e]);
         }
       }
     );

@@ -255,9 +255,9 @@
                       <h2 class="font-weight-light text-danger">
                         Requests To Admin
                       </h2>
-                      <p class="color-black-opacity-5">
-                        This section shows all requests To Admin
-                      </p>
+                      <div class="alert alert-danger" *ngIf="errorApartmentRequested">
+                        {{ errorApartmentRequested }}
+                      </div>
                     </div>
                   </div>
                   <div class="row">
@@ -286,10 +286,9 @@
                       <h2 class="font-weight-light text-danger">
                         Requests From Renters
                       </h2>
-                      <p class="color-black-opacity-5">
-                        This section shows all requests from user to reserve
-                        apartment
-                      </p>
+                      <div class="alert alert-danger" *ngIf="errorOwnerApartmentRequests">
+                        {{ errorOwnerApartmentRequests }}
+                      </div>
                     </div>
                   </div>
                   <div class="row">
@@ -324,9 +323,9 @@
                       <h2 class="font-weight-light text-danger">
                         Approved Listings
                       </h2>
-                      <p class="color-black-opacity-5">
-                        This section shows all Approved Listings
-                      </p>
+                      <div class="alert alert-danger" *ngIf="errorapartmentApproved">
+                        {{ errorapartmentApproved }}
+                      </div>
                     </div>
                   </div>
                   <div class="row">

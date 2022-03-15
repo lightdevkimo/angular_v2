@@ -10,9 +10,9 @@
       <div class="col-md-6 mb-5">
         <form action="#" class="p-5 bg-white" style="margin-top: -30vh" #loginForm="ngForm"
           (ngSubmit)="login(loginForm)">
-          <div class="alert alert-danger" *ngIf="error">
-            {{ error }}
-          </div>
+          <ul class="alert alert-danger" *ngIf="error.length>0">
+            <li *ngFor="let err of error">{{err}}</li>
+          </ul>
           <div class="row form-group">
             <div class="col-md-12">
               <label class="text-black" for="email">Email</label>
