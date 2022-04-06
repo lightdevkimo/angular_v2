@@ -23,11 +23,12 @@ export class ListingComponent implements OnInit {
   cities: cities[] = [];
   apart: apart[] = [];
   test = true;
-  url="https://saknweb.herokuapp.com/storage/images/"
+  url="http://127.0.0.1:8000/images/"
   error=""
+  images=[]
 
   getcities() {
-    this.http.get('https://saknweb.herokuapp.com/api/governates').subscribe(data => {
+    this.http.get('http://127.0.0.1:8000/api/governates').subscribe(data => {
 
       for (let i = 0; i < data['data'].length; i++) {
         this.gov[i] = (data['data'][i]);
@@ -39,7 +40,7 @@ export class ListingComponent implements OnInit {
 
 
   choosegov(event: any) {
-    this.http.get('https://saknweb.herokuapp.com/api/findcities/'.concat(event.target.value)).subscribe(data => {
+    this.http.get('http://127.0.0.1:8000/api/findcities/'.concat(event.target.value)).subscribe(data => {
       for (let i = 0; i < data['data'].length; i++) {
         this.cities[i] = (data['data'][i]);
       }
@@ -70,22 +71,25 @@ export class ListingComponent implements OnInit {
     params =data['min_price'] ? params.append('min_price', data['min_price']):params;
     params =data['min_price']? params.append('max_price', +data['min_price']*2):params;
     params =kimo? params.append('city_id', kimo):params;
-    console.log(params);
+    //console.log(params);
 
-    this.http.get('https://saknweb.herokuapp.com/api/apartement/search', { params: params })
+    this.http.get('http://127.0.0.1:8000/api/apartement/search', { params: params })
       .subscribe((result) => {
         this.error = ""
         this.apart=[];
         for (let i = 0; i < result['data'].length; i++) {
           this.apart[i] = (result['data'][i]);
+          this.apart[i]['link'] =this.apart[i]['images'].split(',')[0]
         }
+        //console.log(this.apart[5]['images'].split(',')[0])
+
 
       },
       (err) => {
         this.apart=[];
         this.error = err.error.error
       })
-    console.log(this.apart);
+    //console.log(this.apart);
   }
 
 

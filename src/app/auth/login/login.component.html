@@ -8,10 +8,10 @@
   <div class="container">
     <div class="row d-flex justify-content-around">
       <div class="col-md-6 mb-5">
-        <form action="#" class="p-5 bg-white" style="margin-top: -30vh" #loginForm="ngForm"
+        <form action="#" class="p-5 bg-white" style="margin-top: -15vh" #loginForm="ngForm"
           (ngSubmit)="login(loginForm)">
           <ul class="alert alert-danger" *ngIf="error.length>0">
-            <li *ngFor="let err of error">{{err}}</li>
+            <li >{{error}}</li>
           </ul>
           <div class="row form-group">
             <div class="col-md-12">

@@ -23,14 +23,14 @@ export class EditUserComponent implements OnInit {
   }
 
   Users() {
-    this.http.get('https://saknweb.herokuapp.com/api/user/' + this.id, { headers: new HttpHeaders().append('Authorization', 'Bearer ' + localStorage.getItem('token')) }).subscribe(data => {
+    this.http.get('http://127.0.0.1:8000/api/user/' + this.id, { headers: new HttpHeaders().append('Authorization', 'Bearer ' + localStorage.getItem('token')) }).subscribe(data => {
       this.user = data['data'];
 
     });
   }
 
   onsave(data: any){
-    this.http.put('https://saknweb.herokuapp.com/api/user/' + this.id,data.value, { headers: new HttpHeaders().append('Authorization', 'Bearer ' + localStorage.getItem('token')) }).subscribe(data => {
+    this.http.put('http://127.0.0.1:8000/api/user/' + this.id,data.value, { headers: new HttpHeaders().append('Authorization', 'Bearer ' + localStorage.getItem('token')) }).subscribe(data => {
 
       this.router.navigateByUrl('/admin-panal/statics');
 

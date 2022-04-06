@@ -14,7 +14,7 @@
         #addApartmentForm="ngForm"
         (ngSubmit)="addApartment(addApartmentForm.value)"
         class="p-5 bg-white"
-        style="margin-top: -150px"
+        style="margin-top: -10vh"
       >
         <h3 class="text-danger text-center">Please Fill This Form</h3>
         <ul class="alert alert-danger" *ngIf="error.length>0">
@@ -372,10 +372,11 @@
               required
               class="form-control"
               type="file"
-              name="ii"
+              multiple
               ngModel
               #images="ngModel"
               accept="image/*"
+              name="ii[]"
               id="formFileMultiple"
               (change)="selectFiles($event)"
               [ngClass]="{
