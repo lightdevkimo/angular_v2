@@ -54,6 +54,7 @@ export interface apart {
   link?: string;
   gender: string;
   available: number;
+  phone: number;
   max: number;
   images?: any;
   nearby?: string;
