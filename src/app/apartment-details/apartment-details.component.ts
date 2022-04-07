@@ -20,6 +20,7 @@ export class ApartmentDetailsComponent implements OnInit {
   personName=""
   errorReserve:string=""
   images=[]
+  renters:any=[]
   constructor(private activeRouter: ActivatedRoute, private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
@@ -42,6 +43,7 @@ export class ApartmentDetailsComponent implements OnInit {
     this.id = this.activeRouter.snapshot.params['id']
     this.showApart()
     this.showComments()
+    this.showRenters()
 
   }
 
@@ -82,13 +84,26 @@ export class ApartmentDetailsComponent implements OnInit {
   }
 
   Reject(){
-    console.log('http://127.0.0.1:8000/api/apartements/reject/'+this.id);
     this.http
       .post('http://127.0.0.1:8000/api/apartements/reject/'+this.id,{},
         {headers: new HttpHeaders().append('Authorization','Bearer '+localStorage.getItem('token'))})
       .subscribe(
         (data) => {
           this.router.navigateByUrl('/admin-panal/apartments');
+        }
+        ,(err) => {
+
+        }
+        );
+  }
+
+  DeleteApartment(){
+    this.http
+      .delete('http://127.0.0.1:8000/api/apartements/'+this.id,
+        {headers: new HttpHeaders().append('Authorization','Bearer '+localStorage.getItem('token'))})
+      .subscribe(
+        (data) => {
+          this.router.navigateByUrl('/profile');
         }
         ,(err) => {
 
@@ -105,6 +120,18 @@ export class ApartmentDetailsComponent implements OnInit {
       this.images=data['data']['images'].split(",")
       //console.log(this.images);
 
+    });
+
+  }
+
+  showRenters() {
+    this.http.get('http://127.0.0.1:8000/api/apartement/renters',{
+      headers: new HttpHeaders().append('Authorization','Bearer '+localStorage.getItem('token')),
+      params: new HttpParams().append(
+          "apartment_id",this.id
+          )
+    }).subscribe(data => {
+      this.renters=data
     });
 
   }
@@ -143,6 +170,19 @@ export class ApartmentDetailsComponent implements OnInit {
       }
     )
 
+  }
+
+  withdraw(index: any) {
+    this.http
+      .delete(
+        'http://127.0.0.1:8000/api/rent/' + +index,{
+          headers: new HttpHeaders().append('Authorization','Bearer '+localStorage.getItem('token'))}
+      )
+      .subscribe((res) => {
+        console.log(res);
+      });
+
+    this.router.navigateByUrl('/find');
   }
 
 

@@ -338,6 +338,9 @@
                           <h5 class="card-text mb-5">
                             Address : {{ apartment.address }}
                           </h5>
+                          <a [routerLink]="['apart-details', apartment.id]" class="btn btn-danger">
+                            Show
+                          </a>
                         </div>
                       </div>
                     </div>

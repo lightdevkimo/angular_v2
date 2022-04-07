@@ -35,6 +35,7 @@ const routes: Routes = [
   },
   { path: 'find', component: ListingComponent },
   { path: 'find/apart-details/:id', component: ApartmentDetailsComponent },
+  { path: 'profile/apart-details/:id', component: ApartmentDetailsComponent },
   //{ path: 'profile', component: ProfileComponent ,canActivate:[AuthGuard] },
  // { path: 'profile', component: ProfileComponent ,canActivate:[OwnerGuard] },
   { path: 'profile', component: ProfileComponent ,canActivate:[UserGuard] },
